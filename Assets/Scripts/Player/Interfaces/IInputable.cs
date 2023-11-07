@@ -8,4 +8,8 @@ public interface IInputable
     bool IsShiftClicked();
     bool IsShiftHold();
     bool IsSpacePressed();
+    bool IsLMouseClick();
+    bool IsLMouseHold();
+    bool IsRMouseClick();
+    bool IsRMouseHold();
 }

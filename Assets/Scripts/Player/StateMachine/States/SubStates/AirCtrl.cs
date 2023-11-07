@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InAir : State
+public class AirCtrl : InAir
 {
     Rigidbody rb;
-    public InAir(Player _player, StateMachine _machine) : base(_player, _machine)
+    public AirCtrl(Player _player, StateMachine _machine) : base(_player, _machine)
     {
         rb = player.GetComponent<Rigidbody>();
     }

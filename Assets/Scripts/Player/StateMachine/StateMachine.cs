@@ -15,7 +15,7 @@ public class StateMachine
 
     public void ChangeState(State _state)
     {
-        if(lastState == curState)
+        if(_state == curState)
             return;
         curState.ExitState();
         lastState = curState;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dash : Movement
+public class Dash : State
 {
     float time;
     float force;

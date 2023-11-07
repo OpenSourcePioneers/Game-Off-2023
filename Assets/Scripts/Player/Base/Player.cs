@@ -33,7 +33,8 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     public Run run {get; set;}
     public Jump jump {get; set;}
     public Dash dash {get; set;}
-    public InAir inAir {get; set;}
+    public AirCtrl airCtrl {get; set;}
+    public Attack attack {get; set;}
     #endregion
     
     #region Private variables
@@ -53,34 +54,25 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         run = new Run(this, machine);
         jump = new Jump(this, machine);
         dash = new Dash(this, machine);
-        inAir = new InAir(this, machine);
+        airCtrl = new AirCtrl(this, machine);
+        attack = new Attack(this, machine);
         machine.SetState(idle);
     }
 
     void Update()
     {
-        CamToFocused();
-        State nCurState = machine.curState;
-        if(nCurState != inAir && !OnGround())
-        {
-            if(nCurState != jump && nCurState != dash)
-                machine.ChangeState(inAir);
-        }
-        //machine.globalState.FrameUpdate();
+        ConfigCam();
         machine.curState.FrameUpdate();
-        stateText.text = new string($"State: {machine.curState.GetType().ToString()}");
+        stateText.text = new string($"State: {machine.curState.GetType()}");
     }
 
     void FixedUpdate()
     {
-        //machine.globalState.FixedFrameUpdate();
         machine.curState.FixedFrameUpdate();
     }
 
     public void Move(float speed)
     {
-        //Vector3 dir =  inp * speed * Time.fixedDeltaTime;
-        //dir = new Vector3(dir.x, playerRb.velocity.y, dir.z);
         MoveInDir(speed, inp);
     }
 
@@ -93,18 +85,13 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         }
     }
 
-    public void CamToFocused()
+    public void ConfigCam()
     {
         Vector3 lookDir = transform.position - new Vector3(mainCam.position.x, transform.position.y,mainCam.position.z);
         orientation.forward = lookDir.normalized;
         inp = new Vector3(Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal")).normalized;
         inp = (inp.x * orientation.forward + inp.z * orientation.right).normalized;
         transform.forward = Vector3.Slerp(transform.forward, inp.normalized, rotSpeed * Time.fixedDeltaTime);
-    }
-
-    public void CamToFree()
-    {
-        transform.forward += inp;
     }
 
     public bool OnGround()
@@ -144,6 +131,38 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     public bool IsSpacePressed()
     {
         if(Input.GetKeyDown(KeyCode.Space))
+            return true;
+        else
+            return false;
+    }
+
+    public bool IsLMouseClick()
+    {
+        if(Input.GetMouseButtonDown(0))
+            return true;
+        else
+            return false;
+    }
+
+    public bool IsLMouseHold()
+    {
+        if(Input.GetMouseButton(0))
+            return true;
+        else
+            return false;
+    }
+
+    public bool IsRMouseClick()
+    {
+        if(Input.GetMouseButtonDown(1))
+            return true;
+        else
+            return false;
+    }
+
+    public bool IsRMouseHold()
+    {
+        if(Input.GetMouseButtonDown(1))
             return true;
         else
             return false;

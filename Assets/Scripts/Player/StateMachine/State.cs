@@ -16,14 +16,5 @@ public class State
     public virtual void FrameUpdate() {}
     public virtual void FixedFrameUpdate() {}
     public virtual void ExitState() {}
-    public virtual void TransitionCheck() {
-        if(player.IsShiftClicked())
-        {
-            machine.ChangeState(player.dash);
-        }
-        else if(player.IsSpacePressed() && player.OnGround())
-        {
-            machine.ChangeState(player.jump);
-        }
-    }
+    public virtual void TransitionCheck() {}
 }

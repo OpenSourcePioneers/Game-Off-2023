@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Walk : State
+public class Walk : Grounded
 {
     public Walk(Player _player, StateMachine _machine) : base(_player, _machine)
     {

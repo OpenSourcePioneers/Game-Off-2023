@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jump : Air
+public class Jump : InAir
 {
     float time;
     float force;
@@ -31,11 +31,8 @@ public class Jump : Air
 
     public override void TransitionCheck()
     {
-        if(player.IsShiftClicked())
-        {
-            machine.ChangeState(player.dash);
-        }
-        else if(force < 2f)
-            machine.ChangeState(player.inAir);
+        base.TransitionCheck();
+        if(force < 2f)
+            machine.ChangeState(player.airCtrl);
     }
 }

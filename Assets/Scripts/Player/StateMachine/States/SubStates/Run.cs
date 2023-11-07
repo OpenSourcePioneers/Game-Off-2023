@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Run : State
+public class Run : Grounded
 {
     public Run(Player _player, StateMachine _machine) : base(_player, _machine)
     {
