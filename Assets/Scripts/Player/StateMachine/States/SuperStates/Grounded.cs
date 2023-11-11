@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grounded : State
+public class Grounded : PlayerState
 {
-    public Grounded(Player _player, StateMachine _machine) : base(_player, _machine)
+    public Grounded(Player _player, PlayerMachine _machine) : base(_player, _machine)
     {
 
     }
-
-
+    public override void EnterState()
+    {
+        base.EnterState();
+        player.grounded = true;
+    }
+    public override void ExitState()
+    {
+        base.ExitState();
+        player.grounded = false;
+    }
     public override void TransitionCheck()
     {
         base.TransitionCheck();

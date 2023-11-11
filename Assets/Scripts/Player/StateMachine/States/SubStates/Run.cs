@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Run : Grounded
 {
-    public Run(Player _player, StateMachine _machine) : base(_player, _machine)
+    public Run(Player _player, PlayerMachine _machine) : base(_player, _machine)
     {
 
     }
-
+    
+    public override void EnterState()
+    {
+        base.EnterState();
+    }
+    public override void ExitState()
+    {
+        base.ExitState();
+    }
     public override void FixedFrameUpdate()
     {
         TransitionCheck();

@@ -16,8 +16,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
 
     [SerializeField] public AnimationCurve jumpCurve;
     [SerializeField] public AnimationCurve dashCurve;
-    [field: SerializeField] public float maxHealth {get; set;} = 10f;
-    public float curHealth {get; set;}
+    [HideInInspector] public bool grounded;
     [SerializeField] public float wSpeed;
     [SerializeField] public float rSpeed;
     [SerializeField] public float aSpeed;
@@ -27,7 +26,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     [HideInInspector] public Vector3 inp;
 
     #region StateMachine variables
-    public StateMachine machine {get; set;}
+    public PlayerMachine machine {get; set;}
     public Idle idle {get; set;}
     public Walk walk {get; set;}
     public Run run {get; set;}
@@ -36,10 +35,13 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     public AirCtrl airCtrl {get; set;}
     public Attack attack {get; set;}
     #endregion
-    
-    #region Private variables
-    const  float forceMult = 5000f;
+
+    #region IDamagable
+    [field: SerializeField] public float maxHealth {get; set;} = 10f;
+    [field: SerializeField] public float curHealth {get; set;}
+    public void Damage(float amount) => curHealth -= amount;
     #endregion
+    
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -48,7 +50,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         curHealth = maxHealth;
         playerRb.drag = rbDrag;
         //Setup StateMachine
-        machine = new StateMachine();
+        machine = new PlayerMachine();
         idle = new Idle(this, machine);
         walk = new Walk(this, machine);
         run = new Run(this, machine);
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     {
         ConfigCam();
         machine.curState.FrameUpdate();
-        stateText.text = new string($"State: {machine.curState.GetType()}");
+        //stateText.text = new string($"State: {machine.curState.GetType()}");
     }
 
     void FixedUpdate()
@@ -76,12 +78,12 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         MoveInDir(speed, inp);
     }
 
-
     public void MoveInDir(float speed, Vector3 dir)
     {
         if(playerRb.velocity.sqrMagnitude < speed * speed)
         {
-            playerRb.AddForce(dir * speed * forceMult * Time.fixedDeltaTime, ForceMode.Force);
+            playerRb.AddForce(dir * speed * Universe.forceMult * 
+                Time.fixedDeltaTime, ForceMode.Force);
         }
     }
 
@@ -91,7 +93,8 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         orientation.forward = lookDir.normalized;
         inp = new Vector3(Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal")).normalized;
         inp = (inp.x * orientation.forward + inp.z * orientation.right).normalized;
-        transform.forward = Vector3.Slerp(transform.forward, inp.normalized, rotSpeed * Time.fixedDeltaTime);
+        transform.forward = Vector3.Slerp(transform.forward, inp.normalized, 
+            rotSpeed * Time.deltaTime);
     }
 
     public bool OnGround()
@@ -101,8 +104,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         else
             return false;
     }
-    
-    public void Damage(float amount) => curHealth -= amount;
+
     
     #region Input interface
     public bool IsMoving()
