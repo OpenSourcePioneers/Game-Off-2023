@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HeadButt", menuName = "Behaviours/Attack/HeadButt", order = 0)]
 public class HeadButt : AttackSOBase
 {
-    [SerializeField] public float damage;
+    [SerializeField] private float damage;
     [SerializeField] private AnimationCurve forceCurve;
 
     List<Collider> damagedCollider = new List<Collider>();
@@ -16,6 +16,7 @@ public class HeadButt : AttackSOBase
     public override void DoEnterState()
     {
         base.DoEnterState();
+        head.AssignBehaviour(this);
         damagedCollider = new List<Collider>();
         focusTime = time = 0f;
         force = 2f;
@@ -57,15 +58,15 @@ public class HeadButt : AttackSOBase
     {
         base.DoCollisionCheck(collider);
 
-        if(canAttack)
+        IDamageable iDamageable;
+        if(canAttack && collider.TryGetComponent<IDamageable>(out iDamageable))
         {
             foreach (Collider c in damagedCollider)
             {
-                if(c == collider)
-                    return;
+                return;
             }
             damagedCollider.Add(collider);
-            collider.GetComponent<IDamageable>().Damage(damage);
+            iDamageable.Damage(damage);
         }
     }
 

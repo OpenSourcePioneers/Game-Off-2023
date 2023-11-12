@@ -48,7 +48,7 @@ public class CircleAround : CombatSOBase
     public override void DoTransitionCheck()
     {
         base.DoTransitionCheck();
-        if(!sent && time > attackTime)
+        if(time > attackTime)
         {
             enemy.ResetPath();
             time = 0f;

@@ -70,16 +70,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Start()
     {
-        curHealth = maxHealth;
-        disToPlayer = (player.transform.position - transform.position).magnitude;
-        obstacle = grid.unwalkableMask;
-        instAttackBase.Initialize(this, gameObject);
-        instChaseBase.Initialize(this, gameObject);
-        instCombatBase.Initialize(this, gameObject);
-        instWanderBase.Initialize(this, gameObject);
-        machine.SetState(wander);
-
-        DebugCircle(chaseRad, Color.red);
+        InitializeStates();
     }
 
     // Update is called once per frame
@@ -168,6 +159,22 @@ public class Enemy : MonoBehaviour, IDamageable
         pathInd = 0;
         StopCoroutine("Wait");
     }
+    #region Protected for specific AI
+    protected void InitializeStates()
+    {
+        curHealth = maxHealth;
+        disToPlayer = (player.transform.position - transform.position).magnitude;
+        obstacle = grid.unwalkableMask;
+        instAttackBase.Initialize(this, gameObject);
+        instChaseBase.Initialize(this, gameObject);
+        instCombatBase.Initialize(this, gameObject);
+        instWanderBase.Initialize(this, gameObject);
+        machine.SetState(wander);
+
+        DebugCircle(chaseRad, Color.red);
+    }
+
+    #endregion
 
     #region Debug
     public void DebugCircle(float radius, Color color)
