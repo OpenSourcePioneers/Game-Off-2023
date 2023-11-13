@@ -5,7 +5,7 @@ using UnityEngine;
 public class AirCtrl : InAir
 {
     Rigidbody rb;
-    public AirCtrl(Player _player, StateMachine _machine) : base(_player, _machine)
+    public AirCtrl(Player _player, PlayerMachine _machine) : base(_player, _machine)
     {
         rb = player.GetComponent<Rigidbody>();
     }

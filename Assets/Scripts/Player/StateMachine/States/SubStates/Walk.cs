@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class Walk : Grounded
 {
-    public Walk(Player _player, StateMachine _machine) : base(_player, _machine)
+    public Walk(Player _player, PlayerMachine _machine) : base(_player, _machine)
     {
         
+    }
+
+    public override void EnterState()
+    {
+        base.EnterState();
+    }
+    
+    public override void ExitState()
+    {
+        base.ExitState();
     }
 
     public override void FixedFrameUpdate()

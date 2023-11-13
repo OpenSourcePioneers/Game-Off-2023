@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State
+public class PlayerState
 {
     protected Player player;
-    protected StateMachine machine;
-    public State(Player _player, StateMachine _machine)
+    protected PlayerMachine machine;
+    public PlayerState(Player _player, PlayerMachine _machine)
     {
         this.player = _player;
         this.machine = _machine;

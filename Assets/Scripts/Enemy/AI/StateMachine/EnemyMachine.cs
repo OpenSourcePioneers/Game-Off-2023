@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine
+public class EnemyMachine
 {
-    private State lastState;
-    public State curState {get; set;}
-    public void SetState(State _state)
+    private EnemyState lastState;
+    public EnemyState curState {get; set;}
+    public void SetState(EnemyState _state)
     {
         curState = _state;
         curState.EnterState();
-        curState.TransitionCheck();
     }
 
-    public void ChangeState(State _state)
+    public void ChangeState(EnemyState _state)
     {
         if(_state == curState)
             return;

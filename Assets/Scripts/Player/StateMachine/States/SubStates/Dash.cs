@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dash : State
+public class Dash : PlayerState
 {
     float time;
     float force;
 
-    public Dash(Player _player, StateMachine _machine) : base(_player, _machine)
+    public Dash(Player _player, PlayerMachine _machine) : base(_player, _machine)
     {
 
     }

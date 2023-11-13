@@ -7,7 +7,7 @@ public class Jump : InAir
     float time;
     float force;
 
-    public Jump(Player _player, StateMachine _machine) : base(_player, _machine)
+    public Jump(Player _player, PlayerMachine _machine) : base(_player, _machine)
     {
         
     }

@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Idle : Grounded
 {
-    public Idle(Player _player, StateMachine _machine) : base(_player, _machine)
+    public Idle(Player _player, PlayerMachine _machine) : base(_player, _machine)
     {
         
+    }
+    public override void EnterState()
+    {
+        base.EnterState();
+    }
+    public override void ExitState()
+    {
+        base.ExitState();
     }
     
     public override void FrameUpdate() => TransitionCheck();
