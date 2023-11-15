@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{377F6183-9C0E-40B9-81D8-FE667E5D1593}" SchemaVersion="110">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{377F6183-9C0E-40B9-81D8-FE667E5D1593}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Debug" ID="{7AFAEE86-B580-4C15-965A-F97AF53E57E8}" ShortID="737338011">
+					<ChildrenList>
+						<Event Name="Play_Debug_01" ID="{4D052611-1756-4C33-B0C5-6744459279C2}">
+							<ChildrenList>
+								<Action Name="" ID="{253F4B21-1BD0-4E1F-982C-BC90FCABCA83}" ShortID="207592631">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="600" ID="{2BA96EB4-056A-4FB2-8CF2-D12EC4C4D27B}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Debug_01" ID="{077044E3-7472-4AA7-B891-4828A37F1FEF}">
+							<ChildrenList>
+								<Action Name="" ID="{D1B53C74-57BD-4006-B07A-52C898ADFA4C}" ShortID="889664284">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="600" ID="{2BA96EB4-056A-4FB2-8CF2-D12EC4C4D27B}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
