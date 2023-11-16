@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Linux" BasePlatform="Linux" SchemaVersion="16" SoundBankVersion="145">
+	<RootPaths>
+		<ProjectRoot>../..</ProjectRoot>
+		<SourceFilesRoot>../../.cache/Linux</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>.</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{16544DC3-3B6B-1DEB-1A08-E756D59BE879}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+			</Busses>
+		</SoundBank>
+		<SoundBank Id="1465331116" Type="User" Language="SFX" Hash="{F685E5D6-0641-CF91-DDC0-331308BA5456}">
+			<ShortName>Global</ShortName>
+			<Path>Global.bnk</Path>
+			<Plugins>
+				<Custom>
+					<Plugin Id="131694268" Name="Synth One" LibName="Wwise Synth One" LibId="9699330"/>
+				</Custom>
+			</Plugins>
+			<Events>
+				<Event Id="670160927" Name="Play_Debug_01" DurationType="Unknown">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="131694268"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
+				<Event Id="3377468577" Name="Stop_Debug_01" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{2919E2F0-AD4E-9147-CCF6-CC89ABF710A3}</FileHash>
+</SoundBanksInfo>
