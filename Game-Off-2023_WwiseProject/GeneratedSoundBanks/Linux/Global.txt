@@ -1,0 +1,10 @@
+Event	ID	Name			Wwise Object Path	Notes
+	670160927	Play_Debug_01			\Default Work Unit\Debug\Play_Debug_01	
+	3377468577	Stop_Debug_01			\Default Work Unit\Debug\Stop_Debug_01	
+
+Modulator Envelope	ID	Name			Wwise Object Path	Notes
+	227085724	Modulator Envelope (Custom)				
+
+Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
+	131694268	Synth One	Wwise Synth One		\Actor-Mixer Hierarchy\Default Work Unit\Debug\600\Synth One	
+
