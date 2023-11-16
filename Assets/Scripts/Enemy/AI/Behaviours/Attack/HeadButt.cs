@@ -7,10 +7,11 @@ public class HeadButt : AttackSOBase
 {
     [SerializeField] private float damage;
     [SerializeField] private AnimationCurve forceCurve;
+    [SerializeField] private float aimTime;
 
     List<Collider> damagedCollider = new List<Collider>();
     float time;
-    float focusTime;
+    float curTime;
     float force;
 
     public override void DoEnterState()
@@ -18,9 +19,8 @@ public class HeadButt : AttackSOBase
         base.DoEnterState();
         head.AssignBehaviour(this);
         damagedCollider = new List<Collider>();
-        focusTime = time = 0f;
+        curTime = time = 0f;
         force = 2f;
-        canAttack = false;
     }
     public override void DoFrameUpdate()
     {
@@ -28,7 +28,7 @@ public class HeadButt : AttackSOBase
         DoTransitionCheck();
 
         if(!canAttack)
-            LookAtTarget();
+            canAttack = enemy.AimAtPlayer(aimTime, ref curTime);
         else
         {
             time += Time.deltaTime;
@@ -66,7 +66,7 @@ public class HeadButt : AttackSOBase
                 return;
             }
             damagedCollider.Add(collider);
-            iDamageable.Damage(damage);
+            iDamageable.Damage(damage, collider.ClosestPoint(transform.position));
         }
     }
 
@@ -76,23 +76,6 @@ public class HeadButt : AttackSOBase
         {
             enemyRb.AddForce(transform.forward * force * Universe.forceMult * 
                 Time.fixedDeltaTime, ForceMode.Force);
-        }
-    }
-
-    private void LookAtTarget()
-    {
-        Ray ray = new Ray(transform.position, transform.forward.normalized);
-        if(!Physics.Raycast(ray, enemy.chaseRad * 2, enemy.playerMask))
-        {
-            //Rotate to look at player
-            enemy.RotateToTarget(player.transform.position);
-            focusTime = 0f;
-        }
-        else
-        {
-            focusTime += Time.deltaTime;
-            if(focusTime > 0.5f)
-                canAttack = true;
         }
     }
 }

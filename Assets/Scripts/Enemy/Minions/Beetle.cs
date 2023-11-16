@@ -10,6 +10,9 @@ public class Beetle : Enemy
     private void Start() 
     {
         InitializeStates();
-        instAttackBase.head = head;
+        foreach (AttackSOBase attack in instAttackBase)
+        {
+            attack.head = head;
+        }
     }
 }
