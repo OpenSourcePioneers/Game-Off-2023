@@ -6,6 +6,7 @@ public class Dash : PlayerState
 {
     float time;
     float force;
+    public double leaveTime;
 
     public Dash(Player _player, PlayerMachine _machine) : base(_player, _machine)
     {
@@ -27,6 +28,12 @@ public class Dash : PlayerState
     {
         TransitionCheck();
         player.MoveInDir(force, player.transform.forward);
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+        leaveTime = Time.realtimeSinceStartupAsDouble;
     }
 
     public override void TransitionCheck()

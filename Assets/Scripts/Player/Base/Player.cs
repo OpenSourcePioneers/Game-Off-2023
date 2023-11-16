@@ -22,6 +22,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     [SerializeField] public float aSpeed;
     [SerializeField] public float rbDrag;
     [SerializeField] private float rotSpeed;
+    [SerializeField] public float dashDelay;
     [SerializeField] private LayerMask walkable;
     [HideInInspector] public Vector3 inp;
 
@@ -38,8 +39,16 @@ public class Player : MonoBehaviour, IDamageable, IInputable
 
     #region IDamagable
     [field: SerializeField] public float maxHealth {get; set;} = 10f;
-    [field: SerializeField] public float curHealth {get; set;}
-    public void Damage(float amount) => curHealth -= amount;
+    public float curHealth {get; set;}
+    public void Damage(float amount, Vector3 target)
+    {
+        curHealth -= amount;
+        Vector3 dir = (transform.position - target).normalized;
+        playerRb.AddForce(dir * (amount + Universe.knockback), ForceMode.Impulse);
+        
+        if(curHealth < 0)
+            Destroy(this.gameObject);
+    }
     #endregion
     
     void Start()
@@ -92,6 +101,8 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         Vector3 lookDir = transform.position - new Vector3(mainCam.position.x, transform.position.y,mainCam.position.z);
         orientation.forward = lookDir.normalized;
         inp = new Vector3(Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal")).normalized;
+        if(inp.sqrMagnitude == 0f)
+            return;
         inp = (inp.x * orientation.forward + inp.z * orientation.right).normalized;
         transform.forward = Vector3.Slerp(transform.forward, inp.normalized, 
             rotSpeed * Time.deltaTime);

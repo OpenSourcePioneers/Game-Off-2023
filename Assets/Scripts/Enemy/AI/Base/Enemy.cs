@@ -13,7 +13,9 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private float speed;
     [SerializeField] public float chaseRad;
     [SerializeField] private float rotSpeed;
+    [HideInInspector] public bool lockedAtTarget;
     [HideInInspector] public float disToPlayer;
+    [HideInInspector] public int attackInd;
 
     Rigidbody enemyRb;
     List<float> dRadius = new List<float>();
@@ -35,37 +37,36 @@ public class Enemy : MonoBehaviour, IDamageable
     #endregion
 
     #region Scriptable Object variables
-    [SerializeField] private AttackSOBase attackSOBase;
+    [SerializeField] private List<AttackSOBase> attackSOBase;
     [SerializeField] private ChaseSOBase chaseSOBase;
     [SerializeField] private CombatSOBase combatSOBase;
     [SerializeField] private WanderSOBase wanderSOBase;
-    public AttackSOBase instAttackBase {get; set;}
+    public List<AttackSOBase> instAttackBase {get; set;} = new List<AttackSOBase>();
     public ChaseSOBase instChaseBase {get; set;}
     public CombatSOBase instCombatBase {get; set;}
     public WanderSOBase instWanderBase {get; set;}
-
     #endregion
     
     #region IDamagable
     [field: SerializeField] public float maxHealth {get; set;} = 10f;
     public float curHealth {get; set;}
-    public void Damage(float amount) => curHealth -= amount;
+    public void Damage(float amount, Vector3 target)
+    {
+        curHealth -= amount;
+        Vector3 dir = (target - transform.position).normalized;
+        enemyRb.AddForce(dir * (amount + Universe.knockback) * Time.deltaTime, ForceMode.Impulse);
+
+        if(curHealth < 0)
+            Destroy(this.gameObject);
+    }
     #endregion
 
     // Start is called before the first frame update
     void Awake()
     {
-        instAttackBase = Instantiate(attackSOBase);
-        instChaseBase = Instantiate(chaseSOBase);
-        instCombatBase = Instantiate(combatSOBase);
-        instWanderBase = Instantiate(wanderSOBase);
-        machine = new EnemyMachine();
-        attack = new EnemyAttack(this, machine);
-        chase = new EnemyChase(this, machine);
-        combat = new EnemyCombat(this, machine);
-        wander = new EnemyWander(this, machine);
-
-        enemyRb = GetComponent<Rigidbody>();
+        if(player == null)
+            player = GameObject.Find("Player").GetComponent<Player>();
+        AssignComponents();
     }
 
     void Start()
@@ -118,7 +119,8 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         canMove = true;
         vec = path[pathInd] - transform.position;
-        RotateToTarget(path[pathInd]);
+        if(!lockedAtTarget)
+            RotateToTarget(path[pathInd]);
         if(vec.sqrMagnitude < 1)
         {
             pathInd++;
@@ -140,6 +142,30 @@ public class Enemy : MonoBehaviour, IDamageable
         transform.forward = Vector3.Slerp(transform.forward, target, rotSpeed * Time.deltaTime);
     }
 
+
+    public bool AimAtPlayer(float time, ref float curTime)
+    {
+        Ray ray = new Ray(transform.position, transform.forward.normalized);
+        if(!Physics.Raycast(ray, chaseRad * 2, playerMask))
+        {
+
+            //Rotate to look at player
+            RotateToTarget(player.transform.position);
+            lockedAtTarget = true;
+            curTime = 0f;
+        }
+        else
+        {
+            curTime += Time.deltaTime;
+            if(curTime > time)
+            {
+                lockedAtTarget = false;
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void CallAfterTime(float time, Action<bool> callback)
     {
         StartCoroutine(Wait(time, callback));
@@ -159,19 +185,65 @@ public class Enemy : MonoBehaviour, IDamageable
         pathInd = 0;
         StopCoroutine("Wait");
     }
+
     #region Protected for specific AI
+    protected void AssignComponents()
+    {
+        foreach (AttackSOBase attack in attackSOBase)
+        {
+            instAttackBase.Add(Instantiate(attack));
+        }
+        instChaseBase = Instantiate(chaseSOBase);
+        instCombatBase = Instantiate(combatSOBase);
+        instWanderBase = Instantiate(wanderSOBase);
+        machine = new EnemyMachine();
+        attack = new EnemyAttack(this, machine);
+        chase = new EnemyChase(this, machine);
+        combat = new EnemyCombat(this, machine);
+        wander = new EnemyWander(this, machine);
+
+        enemyRb = GetComponent<Rigidbody>();
+    }
+
     protected void InitializeStates()
     {
         curHealth = maxHealth;
         disToPlayer = (player.transform.position - transform.position).magnitude;
         obstacle = grid.unwalkableMask;
-        instAttackBase.Initialize(this, gameObject);
+        foreach (AttackSOBase instAttack in instAttackBase)
+        {
+            instAttack.Initialize(this, gameObject);
+        }
         instChaseBase.Initialize(this, gameObject);
         instCombatBase.Initialize(this, gameObject);
         instWanderBase.Initialize(this, gameObject);
         machine.SetState(wander);
 
         DebugCircle(chaseRad, Color.red);
+    }
+    protected void AssignComponentsForBosses()
+    {
+        foreach (AttackSOBase attack in attackSOBase)
+        {
+            instAttackBase.Add(Instantiate(attack));
+        }
+        instCombatBase = Instantiate(combatSOBase);
+        machine = new EnemyMachine();
+        attack = new EnemyAttack(this, machine);
+        combat = new EnemyCombat(this, machine);
+
+        enemyRb = GetComponent<Rigidbody>();
+    }
+    protected void InitializeStatesForBosses()
+    {
+        curHealth = maxHealth;
+        disToPlayer = (player.transform.position - transform.position).magnitude;
+        foreach (AttackSOBase instAttack in instAttackBase)
+        {
+            instAttack.Initialize(this, gameObject);
+        }
+        instCombatBase.Initialize(this, gameObject);
+        machine.SetState(combat);
     }
 
     #endregion

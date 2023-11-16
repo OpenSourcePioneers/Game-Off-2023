@@ -10,7 +10,8 @@ public class AttackSOBase : ScriptableObject
     protected Player player;
     protected Rigidbody enemyRb;
     protected bool canAttack;
-    [HideInInspector]public CollisionCheck head;
+    [HideInInspector] public CollisionCheck head;
+    [HideInInspector] public Transform shootTrans;
 
     public virtual void Initialize(Enemy _enemy, GameObject _gameObject)
     {
@@ -21,10 +22,10 @@ public class AttackSOBase : ScriptableObject
         enemyRb = enemy.GetComponent<Rigidbody>();
     }
 
-    public virtual void DoEnterState() {}
+    public virtual void DoEnterState() {canAttack = false;}
     public virtual void DoFrameUpdate() {}
     public virtual void DoFixedFrameUpdate() {}
-    public virtual void DoExitState() {}
+    public virtual void DoExitState() {canAttack = false;}
     public virtual void DoTransitionCheck() {}
     public virtual void DoCollisionCheck(Collider collider) {}
 }

@@ -27,13 +27,16 @@ public class CircleAround : CombatSOBase
         time += Time.deltaTime;
         DoTransitionCheck();
         enemy.CheckForWayPoints();
-        if(!sent)
+        if(!sent && enemy.finishedPath)
         {
             sent = true;
             enemy.CallAfterTime(Random.Range(minWait, maxWait), SearchForTarget);
         }
         else
+        {
             enemy.RotateToTarget(player.transform.position);
+            enemy.lockedAtTarget = true;
+        }
 
     }
     public override void DoFixedFrameUpdate()
@@ -44,11 +47,12 @@ public class CircleAround : CombatSOBase
     public override void DoExitState()
     {
         base.DoExitState();
+        enemy.lockedAtTarget = false;
     }
     public override void DoTransitionCheck()
     {
         base.DoTransitionCheck();
-        if(time > attackTime)
+        if(time > Random.Range(attackTime, attackTime + 2f))
         {
             enemy.ResetPath();
             time = 0f;

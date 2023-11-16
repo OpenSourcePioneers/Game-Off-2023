@@ -21,7 +21,8 @@ public class Grounded : PlayerState
     public override void TransitionCheck()
     {
         base.TransitionCheck();
-        if(player.IsShiftClicked())
+        if(player.IsShiftClicked() && Time.realtimeSinceStartupAsDouble - 
+            player.dash.leaveTime > player.dashDelay)
         {
             machine.ChangeState(player.dash);
         }

@@ -5,19 +5,19 @@ using UnityEngine;
 public class CollisionCheck : MonoBehaviour
 {
     AttackSOBase attackBehaviour;
-    Enemy enemy;
-    Collider collider;
-
+    public Enemy enemy;
+    Collider mainCollider;
     // Start is called before the first frame update
     void Start()
     {
-        enemy = GetComponentInParent<Enemy>();
-        collider = GetComponent<Collider>();
+        if(enemy == null)
+            enemy = GetComponentInParent<Enemy>();
+        mainCollider = enemy.GetComponent<Collider>();
     }
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(attackBehaviour == null)
+        if(attackBehaviour == null || other == mainCollider)
             return;
         attackBehaviour.DoCollisionCheck(other);
     }
