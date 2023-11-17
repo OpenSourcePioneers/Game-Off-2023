@@ -53,7 +53,7 @@ public class TwoD_Grid : MonoBehaviour
 				if(!neighbour.walkable)
 				{
 					List<TwoD_Node> iNeigh = GetNeighbours(node);
-					List<TwoD_Node> jNeigh = GetNeighbours(node);
+					List<TwoD_Node> jNeigh = GetNeighbours(neighbour);
 					foreach (var i in iNeigh)
 					{
 						foreach (var j in jNeigh)

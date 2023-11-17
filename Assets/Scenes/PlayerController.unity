@@ -170,7 +170,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   gridWorldSize: {x: 200, y: 200}
-  nodeRadius: 0.8
+  nodeRadius: 2
   showGrid: 1
 --- !u!4 &21522611
 Transform:
@@ -522,7 +522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66607776}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27491838, y: -0.000000023395872, z: 0.0000000066897274, w: 0.96146756}
+  m_LocalRotation: {x: 0.27491838, y: 0.000000023395863, z: -0.0000000066897248, w: 0.96146756}
   m_LocalPosition: {x: 0, y: 14.1, z: -22.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2977,13 +2977,14 @@ MonoBehaviour:
   speed: 8
   chaseRad: 60
   rotSpeed: 7
-  lockedAtTarget: 0
-  disToPlayer: 0
-  attackInd: 0
-  finishedPath: 0
   obstacle:
     serializedVersion: 2
     m_Bits: 0
+  lockedAtTarget: 0
+  finishedPath: 0
+  disToPlayer: 0
+  attackInd: 0
+  canTransition: 1
   attackSOBase:
   - {fileID: 11400000, guid: ff36b06f869934869955dd0af5ee347e, type: 2}
   - {fileID: 11400000, guid: e1775d9aec3e84b31aca85273df23377, type: 2}
@@ -7966,13 +7967,14 @@ MonoBehaviour:
   speed: 8
   chaseRad: 60
   rotSpeed: 7
-  lockedAtTarget: 0
-  disToPlayer: 0
-  attackInd: 0
-  finishedPath: 0
   obstacle:
     serializedVersion: 2
     m_Bits: 0
+  lockedAtTarget: 0
+  finishedPath: 0
+  disToPlayer: 0
+  attackInd: 0
+  canTransition: 1
   attackSOBase:
   - {fileID: 11400000, guid: ff36b06f869934869955dd0af5ee347e, type: 2}
   - {fileID: 11400000, guid: e1775d9aec3e84b31aca85273df23377, type: 2}
@@ -8641,13 +8643,14 @@ MonoBehaviour:
   speed: 8
   chaseRad: 60
   rotSpeed: 7
-  lockedAtTarget: 0
-  disToPlayer: 0
-  attackInd: 0
-  finishedPath: 0
   obstacle:
     serializedVersion: 2
     m_Bits: 0
+  lockedAtTarget: 0
+  finishedPath: 0
+  disToPlayer: 0
+  attackInd: 0
+  canTransition: 1
   attackSOBase:
   - {fileID: 11400000, guid: ff36b06f869934869955dd0af5ee347e, type: 2}
   - {fileID: 11400000, guid: e1775d9aec3e84b31aca85273df23377, type: 2}
@@ -8881,22 +8884,22 @@ PrefabInstance:
     - target: {fileID: 6746530808293610309, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000023395872
+      value: 0.000000023395863
       objectReference: {fileID: 0}
     - target: {fileID: 6746530808293610309, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000066897274
+      value: -0.0000000066897248
       objectReference: {fileID: 0}
     - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000023395863
+      value: 0.000000023395872
       objectReference: {fileID: 0}
     - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000066897248
+      value: -0.0000000066897274
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

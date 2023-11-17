@@ -6,6 +6,7 @@ using TMPro;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    #region Class variables
     [SerializeField] private Player player;
     [SerializeField] public LayerMask playerMask;
     [SerializeField] private TwoD_Grid grid;
@@ -13,20 +14,25 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private float speed;
     [SerializeField] public float chaseRad;
     [SerializeField] private float rotSpeed;
+
+    [HideInInspector] public LayerMask obstacle;
     [HideInInspector] public bool lockedAtTarget;
+    [HideInInspector] public bool finishedPath = false;
     [HideInInspector] public float disToPlayer;
     [HideInInspector] public int attackInd;
+    #endregion
 
+    #region  Private variables
     Rigidbody enemyRb;
     List<float> dRadius = new List<float>();
     List<Color> dColor = new List<Color>();
     Vector3[] path = new Vector3[0];
     Vector3 vec;
     bool gettingPath = true;
-    [HideInInspector] public bool finishedPath = false;
     bool canMove;
+    public bool canTransition = true;
     int pathInd;
-    [HideInInspector] public LayerMask obstacle;
+    #endregion
 
     #region State variables
     public EnemyMachine machine {get; set;}
@@ -52,12 +58,28 @@ public class Enemy : MonoBehaviour, IDamageable
     public float curHealth {get; set;}
     public void Damage(float amount, Vector3 target)
     {
+        //ReduceHealth
         curHealth -= amount;
+        //Add KnockBack
         Vector3 dir = (target - transform.position).normalized;
         enemyRb.AddForce(dir * (amount + Universe.knockback) * Time.deltaTime, ForceMode.Impulse);
-
+        //Apply concussion based on amount of damage
+        Concussion(0.1f + amount/15);
+        //Destroy if no Health
         if(curHealth < 0)
             Destroy(this.gameObject);
+    }
+
+    public void Concussion(float amount)
+    {
+        StartCoroutine(StopTransitionFor(amount));
+    }
+
+    private IEnumerator StopTransitionFor(float amount)
+    {
+        canTransition = false;
+        yield return new WaitForSeconds(amount);
+        canTransition = true;
     }
     #endregion
 
@@ -77,14 +99,18 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        stateText.text = new string($"State: {machine.curState.GetType()}");
-        disToPlayer = (player.transform.position - transform.position).magnitude;
-        machine.curState.FrameUpdate();
+        if(canTransition)
+        {
+            stateText.text = new string($"State: {machine.curState.GetType()}");
+            disToPlayer = (player.transform.position - transform.position).magnitude;
+            machine.curState.FrameUpdate();
+        }
     }
 
     void FixedUpdate()
     {
-        machine.curState.FixedFrameUpdate();
+        if(canTransition)
+            machine.curState.FixedFrameUpdate();
     }
 
     void CheckPath(Vector3[] _path, bool pathFound)
@@ -273,6 +299,8 @@ public class Enemy : MonoBehaviour, IDamageable
             Gizmos.color = dColor[i];
             Gizmos.DrawWireSphere(transform.position, dRadius[i]);
         }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawCube(player.transform.position, Vector3.one * 5f);
     }
     #endregion
 }

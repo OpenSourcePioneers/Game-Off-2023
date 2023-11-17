@@ -28,7 +28,7 @@ public class TwoD_Pathfinding : MonoBehaviour
 		List<TwoD_Node> openSet = new List<TwoD_Node>();
 		HashSet<TwoD_Node> closedSet = new HashSet<TwoD_Node>();
 
-		if(startNode != targetNode || startNode.walkable && targetNode.walkable)
+		if(startNode != targetNode /*|| startNode.walkable && targetNode.walkable*/)
 			openSet.Add(startNode);
 
 		while(openSet.Count > 0)

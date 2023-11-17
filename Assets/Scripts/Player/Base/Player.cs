@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     [SerializeField] private Transform orientation;
     #endregion
 
+    #region ClassVariables
     [SerializeField] public AnimationCurve jumpCurve;
     [SerializeField] public AnimationCurve dashCurve;
     [HideInInspector] public bool grounded;
@@ -25,6 +26,11 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     [SerializeField] public float dashDelay;
     [SerializeField] private LayerMask walkable;
     [HideInInspector] public Vector3 inp;
+    #endregion
+
+    #region Private variables
+    bool canTransition = true;
+    #endregion
 
     #region StateMachine variables
     public PlayerMachine machine {get; set;}
@@ -40,14 +46,31 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     #region IDamagable
     [field: SerializeField] public float maxHealth {get; set;} = 10f;
     public float curHealth {get; set;}
+
     public void Damage(float amount, Vector3 target)
     {
+        //ReduceHealth
         curHealth -= amount;
-        Vector3 dir = (transform.position - target).normalized;
-        playerRb.AddForce(dir * (amount + Universe.knockback), ForceMode.Impulse);
-        
+        //Add KnockBack
+        Vector3 dir = (target - transform.position).normalized;
+        playerRb.AddForce(dir * (amount + Universe.knockback) * Time.deltaTime, ForceMode.Impulse);
+        //Apply concussion based on amount of damage
+        Concussion(0.1f + amount/15);
+        //Destroy if no Health
         if(curHealth < 0)
             Destroy(this.gameObject);
+    }
+    
+    public void Concussion(float amount)
+    {
+        StartCoroutine(StopTransitionFor(amount));
+    }
+
+    private IEnumerator StopTransitionFor(float amount)
+    {
+        canTransition = false;
+        yield return new WaitForSeconds(amount);
+        canTransition = true;
     }
     #endregion
     
@@ -72,14 +95,18 @@ public class Player : MonoBehaviour, IDamageable, IInputable
 
     void Update()
     {
-        ConfigCam();
-        machine.curState.FrameUpdate();
-        //stateText.text = new string($"State: {machine.curState.GetType()}");
+        if(canTransition)
+        {
+            ConfigCam();
+            machine.curState.FrameUpdate();
+            //stateText.text = new string($"State: {machine.curState.GetType()}");
+        }
     }
 
     void FixedUpdate()
     {
-        machine.curState.FixedFrameUpdate();
+        if(canTransition)
+            machine.curState.FixedFrameUpdate();
     }
 
     public void Move(float speed)
