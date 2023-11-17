@@ -9,7 +9,7 @@ public class Melee : AttackSOBase
     [SerializeField] private float damage;
     [SerializeField] private float biteDash;
     Vector3 target;
-    float curTime;
+    float refTime;
     bool damaged;
     Color defColor;
     MeshRenderer renderer;
@@ -18,7 +18,7 @@ public class Melee : AttackSOBase
     {
         base.DoEnterState();
         canAttack = false;
-        curTime = 0f;
+        refTime = 0f;
         target = player.transform.position;
         enemy.PushPathRequest(target);
         head.AssignBehaviour(this);
@@ -30,9 +30,11 @@ public class Melee : AttackSOBase
     public override void DoFrameUpdate()
     {
         base.DoFrameUpdate();
+        if(Timeout())
+            DoTransitionCheck();
         if(canAttack)
         {
-            if(enemy.AimAtPlayer(0.1f, ref curTime))
+            if(enemy.AimAtPlayer(0.1f, ref refTime))
             {
                 enemy.ResetPath();
                 enemyRb.AddForce((transform.forward + transform.up).normalized * biteDash * 

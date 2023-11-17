@@ -14,6 +14,7 @@ public class CloseToTarget : ChaseSOBase
     public override void DoEnterState()
     {
         base.DoEnterState();
+
         enemy.PushPathRequest(GetRandomPosNearPlayer());
     }
     public override void DoFrameUpdate()
@@ -21,7 +22,7 @@ public class CloseToTarget : ChaseSOBase
         base.DoFrameUpdate();
         DoTransitionCheck();
         enemy.CheckForWayPoints();
-        if(enemy.disToPlayer > 2 * enemy.chaseRad && !sent)
+        if((player.transform.position - target).magnitude > 2 * enemy.chaseRad && !sent)
         {
             sent = true;
             enemy.CallAfterTime(Random.Range(minWait, maxWait), SearchForTarget);
@@ -39,7 +40,7 @@ public class CloseToTarget : ChaseSOBase
     public override void DoTransitionCheck()
     {
         base.DoTransitionCheck();
-        if(enemy.finishedPath || enemy.disToPlayer < enemy.chaseRad/2)
+        if(enemy.finishedPath || enemy.disToPlayer < enemy.chaseRad/1.4f)
             enemy.machine.ChangeState(enemy.combat);
     }
 
@@ -51,6 +52,7 @@ public class CloseToTarget : ChaseSOBase
 
         if(TwoD_Grid.NodeFromWorldPosition(target).walkable)
             return target;
+            
         else
             return GetRandomPosNearPlayer();
     }

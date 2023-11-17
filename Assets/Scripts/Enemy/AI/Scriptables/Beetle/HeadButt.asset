@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74985d0b2131d4861871d602d8aa2273, type: 3}
   m_Name: HeadButt
   m_EditorClassIdentifier: 
-  damage: 1
+  head: {fileID: 0}
+  shootTrans: {fileID: 0}
   forceCurve:
     serializedVersion: 2
     m_Curve:
@@ -46,3 +47,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  damage: 1
+  aimTime: 1
+  concussionAmount: 2

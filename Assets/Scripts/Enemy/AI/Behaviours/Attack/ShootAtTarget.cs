@@ -12,21 +12,25 @@ public class ShootAtTarget : AttackSOBase
     [SerializeField] private float aimTime;
 
     Rigidbody projRb;
-    float curTime;
+    float refTime;
     CollisionCheck collisionCheck;
 
     public override void DoEnterState()
     {
         base.DoEnterState();
-        curTime = 0f;
+        refTime = 0f;
     }
     public override void DoFrameUpdate()
     {
         base.DoFrameUpdate();
+        if(Timeout())
+        {
+            DoTransitionCheck();
+        }
 
         if(!canAttack)
         {
-            canAttack = enemy.AimAtPlayer(aimTime, ref curTime);
+            canAttack = enemy.AimAtPlayer(aimTime, ref refTime);
         }else
         {
             ShootProjectile();

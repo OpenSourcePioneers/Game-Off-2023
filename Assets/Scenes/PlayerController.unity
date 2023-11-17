@@ -170,7 +170,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   gridWorldSize: {x: 200, y: 200}
-  nodeRadius: 0.8
+  nodeRadius: 2
   showGrid: 1
 --- !u!4 &21522611
 Transform:
@@ -546,8 +546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66607776}
   serializedVersion: 2
-<<<<<<< Updated upstream
-  m_LocalRotation: {x: 0.27491838, y: -0.000000023395872, z: 0.0000000066897274, w: 0.96146756}
+  m_LocalRotation: {x: 0.27491838, y: 0.000000023395863, z: -0.0000000066897248, w: 0.96146756}
   m_LocalPosition: {x: 0, y: 14.1, z: -22.64}
 =======
   m_LocalRotation: {x: 0.22993271, y: 0.000000023681514, z: -0.0000000055950657, w: 0.9732066}
@@ -3193,13 +3192,14 @@ MonoBehaviour:
   speed: 8
   chaseRad: 60
   rotSpeed: 7
-  lockedAtTarget: 0
-  disToPlayer: 0
-  attackInd: 0
-  finishedPath: 0
   obstacle:
     serializedVersion: 2
     m_Bits: 0
+  lockedAtTarget: 0
+  finishedPath: 0
+  disToPlayer: 0
+  attackInd: 0
+  canTransition: 1
   attackSOBase:
   - {fileID: 11400000, guid: ff36b06f869934869955dd0af5ee347e, type: 2}
   - {fileID: 11400000, guid: e1775d9aec3e84b31aca85273df23377, type: 2}
@@ -5126,8 +5126,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 546772219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
+<<<<<<<<< Temporary merge branch 1
 --- !u!1 &1351457246
+=========
+--- !u!1 &1379632264
+>>>>>>>>> Temporary merge branch 2
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5140,12 +5143,22 @@ GameObject:
   - component: {fileID: 1351457247}
   m_Layer: 0
   m_Name: Head
+=========
+  - component: {fileID: 1379632266}
+  - component: {fileID: 1379632265}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+>>>>>>>>> Temporary merge branch 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<<<< Temporary merge branch 1
 --- !u!114 &1351457247
+=========
+--- !u!114 &1379632265
+>>>>>>>>> Temporary merge branch 2
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5180,6 +5193,29 @@ SphereCollider:
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1351457249
+=========
+  m_GameObject: {fileID: 1379632264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca5abe5152c6c742a7d3769b5a00a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: 682ff51bd6cd48a49ab8f3b03e17ef8c,
+    type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!4 &1379632266
+>>>>>>>>> Temporary merge branch 2
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5193,6 +5229,14 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 338548938}
+  m_GameObject: {fileID: 1379632264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> Stashed changes
@@ -6961,8 +7005,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 546772219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
+<<<<<<<<< Temporary merge branch 1
+=========
 --- !u!1 &1818229609
 GameObject:
   m_ObjectHideFlags: 3
@@ -7042,7 +7086,7 @@ Transform:
   - {fileID: 901394772}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Stashed changes
+>>>>>>>>> Temporary merge branch 2
 --- !u!1 &1819531721
 GameObject:
   m_ObjectHideFlags: 0
@@ -7634,13 +7678,14 @@ MonoBehaviour:
   speed: 8
   chaseRad: 60
   rotSpeed: 7
-  lockedAtTarget: 0
-  disToPlayer: 0
-  attackInd: 0
-  finishedPath: 0
   obstacle:
     serializedVersion: 2
     m_Bits: 0
+  lockedAtTarget: 0
+  finishedPath: 0
+  disToPlayer: 0
+  attackInd: 0
+  canTransition: 1
   attackSOBase:
   - {fileID: 11400000, guid: ff36b06f869934869955dd0af5ee347e, type: 2}
   - {fileID: 11400000, guid: e1775d9aec3e84b31aca85273df23377, type: 2}
@@ -8280,13 +8325,14 @@ MonoBehaviour:
   speed: 8
   chaseRad: 60
   rotSpeed: 7
-  lockedAtTarget: 0
-  disToPlayer: 0
-  attackInd: 0
-  finishedPath: 0
   obstacle:
     serializedVersion: 2
     m_Bits: 0
+  lockedAtTarget: 0
+  finishedPath: 0
+  disToPlayer: 0
+  attackInd: 0
+  canTransition: 1
   attackSOBase:
   - {fileID: 11400000, guid: ff36b06f869934869955dd0af5ee347e, type: 2}
   - {fileID: 11400000, guid: e1775d9aec3e84b31aca85273df23377, type: 2}
@@ -8671,63 +8717,22 @@ PrefabInstance:
     - target: {fileID: 6746530808293610309, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.y
-<<<<<<< Updated upstream
       value: -0.000000023395872
-=======
-      value: -1e-45
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6746530808293610309, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.z
-<<<<<<< Updated upstream
       value: 0.0000000066897274
-=======
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.98877203
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.14943172
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.y
-<<<<<<< Updated upstream
       value: -0.000000023395863
-=======
-      value: 2.3146247e-22
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.z
-<<<<<<< Updated upstream
       value: 0.0000000066897248
-=======
-      value: -7.1252744e-23
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8965,12 +8970,14 @@ SceneRoots:
   - {fileID: 1915848914}
   - {fileID: 692204597}
   - {fileID: 21522611}
-<<<<<<< Updated upstream
+<<<<<<<<< Temporary merge branch 1
+  - {fileID: 775521922}
+  - {fileID: 2107292565}
+  - {fileID: 1911279199}
+  - {fileID: 1030642735}
+  - {fileID: 1081740860}
+  - {fileID: 1900407009}
+=========
   - {fileID: 821972040}
-=======
-  - {fileID: 1818229611}
-  - {fileID: 350967507}
-  - {fileID: 197988185}
-  - {fileID: 29287987}
-  - {fileID: 129826709}
->>>>>>> Stashed changes
+  - {fileID: 1379632266}
+>>>>>>>>> Temporary merge branch 2

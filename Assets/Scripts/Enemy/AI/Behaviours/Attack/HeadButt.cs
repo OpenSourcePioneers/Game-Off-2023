@@ -5,13 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HeadButt", menuName = "Behaviours/Attack/HeadButt", order = 0)]
 public class HeadButt : AttackSOBase
 {
-    [SerializeField] private float damage;
     [SerializeField] private AnimationCurve forceCurve;
+    [SerializeField] private float damage;
     [SerializeField] private float aimTime;
+    [SerializeField] private float concussionAmount;
 
     List<Collider> damagedCollider = new List<Collider>();
     float time;
-    float curTime;
+    float refTime;
     float force;
 
     public override void DoEnterState()
@@ -19,7 +20,7 @@ public class HeadButt : AttackSOBase
         base.DoEnterState();
         head.AssignBehaviour(this);
         damagedCollider = new List<Collider>();
-        curTime = time = 0f;
+        refTime = time = 0f;
         force = 2f;
     }
     public override void DoFrameUpdate()
@@ -28,7 +29,7 @@ public class HeadButt : AttackSOBase
         DoTransitionCheck();
 
         if(!canAttack)
-            canAttack = enemy.AimAtPlayer(aimTime, ref curTime);
+            canAttack = enemy.AimAtPlayer(aimTime, ref refTime);
         else
         {
             time += Time.deltaTime;
@@ -48,7 +49,7 @@ public class HeadButt : AttackSOBase
     public override void DoTransitionCheck()
     {
         base.DoTransitionCheck();
-        if(force < 2f)
+        if(force < 2f || Timeout())
         {
             enemy.machine.ChangeState(enemy.combat);
         }
@@ -67,6 +68,7 @@ public class HeadButt : AttackSOBase
             }
             damagedCollider.Add(collider);
             iDamageable.Damage(damage, collider.ClosestPoint(transform.position));
+            iDamageable.Concussion(concussionAmount);
         }
     }
 
