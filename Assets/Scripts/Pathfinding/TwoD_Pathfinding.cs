@@ -81,7 +81,7 @@ public class TwoD_Pathfinding : MonoBehaviour
 		for(int i = 1; i < path.Count; i++)
 		{
 			Vector3 newDir = path[i-1].nodePosition - path[i].nodePosition;
-			if(newDir! != oldDir)
+			if(newDir != oldDir)
 				points.Add(path[i].nodePosition);
 			oldDir = newDir;
 		}

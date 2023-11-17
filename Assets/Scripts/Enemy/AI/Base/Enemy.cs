@@ -10,21 +10,31 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] public LayerMask playerMask;
     [SerializeField] private TwoD_Grid grid;
     [SerializeField] private TextMeshProUGUI stateText;
-    [SerializeField] private float speed;
+    [SerializeField] protected float speed;
     [SerializeField] public float chaseRad;
     [SerializeField] private float rotSpeed;
     [HideInInspector] public bool lockedAtTarget;
     [HideInInspector] public float disToPlayer;
     [HideInInspector] public int attackInd;
 
+<<<<<<< Updated upstream
     Rigidbody enemyRb;
+=======
+    #region  Private variables
+    protected Rigidbody enemyRb;
+>>>>>>> Stashed changes
     List<float> dRadius = new List<float>();
     List<Color> dColor = new List<Color>();
     Vector3[] path = new Vector3[0];
-    Vector3 vec;
+    protected Vector3 vec;
     bool gettingPath = true;
     [HideInInspector] public bool finishedPath = false;
     bool canMove;
+<<<<<<< Updated upstream
+=======
+    public bool canTransition = true;
+    protected bool changedVec;
+>>>>>>> Stashed changes
     int pathInd;
     [HideInInspector] public LayerMask obstacle;
 
@@ -77,9 +87,13 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
         stateText.text = new string($"State: {machine.curState.GetType()}");
         disToPlayer = (player.transform.position - transform.position).magnitude;
         machine.curState.FrameUpdate();
+=======
+        UpdateCall();
+>>>>>>> Stashed changes
     }
 
     void FixedUpdate()
@@ -121,12 +135,15 @@ public class Enemy : MonoBehaviour, IDamageable
         vec = path[pathInd] - transform.position;
         if(!lockedAtTarget)
             RotateToTarget(path[pathInd]);
-        if(vec.sqrMagnitude < 1)
+        if(TwoD_Grid.NodeFromWorldPosition(path[pathInd]) == TwoD_Grid.NodeFromWorldPosition(transform.position))
         {
             pathInd++;
+            changedVec = true;
             if(pathInd >= path.Length)
                 finishedPath = true;
         }
+        else
+            changedVec = false;
     }
 
     public void PushPathRequest(Vector3 target)
@@ -244,6 +261,16 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         instCombatBase.Initialize(this, gameObject);
         machine.SetState(combat);
+    }
+
+    protected void UpdateCall()
+    {
+        if(canTransition)
+        {
+            stateText.text = new string($"State: {machine.curState.GetType()}");
+            disToPlayer = (player.transform.position - transform.position).magnitude;
+            machine.curState.FrameUpdate();
+        }
     }
 
     #endregion
