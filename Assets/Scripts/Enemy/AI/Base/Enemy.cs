@@ -22,23 +22,16 @@ public class Enemy : MonoBehaviour, IDamageable
     [HideInInspector] public int attackInd;
     #endregion
 
-<<<<<<< Updated upstream
-    Rigidbody enemyRb;
-=======
     #region  Private variables
     protected Rigidbody enemyRb;
->>>>>>> Stashed changes
     List<float> dRadius = new List<float>();
     List<Color> dColor = new List<Color>();
     Vector3[] path = new Vector3[0];
     protected Vector3 vec;
     bool gettingPath = true;
     bool canMove;
-<<<<<<< Updated upstream
-=======
     public bool canTransition = true;
     protected bool changedVec;
->>>>>>> Stashed changes
     int pathInd;
     #endregion
 
@@ -107,13 +100,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-<<<<<<< Updated upstream
-        stateText.text = new string($"State: {machine.curState.GetType()}");
-        disToPlayer = (player.transform.position - transform.position).magnitude;
-        machine.curState.FrameUpdate();
-=======
         UpdateCall();
->>>>>>> Stashed changes
     }
 
     void FixedUpdate()
