@@ -7,9 +7,9 @@ using TMPro;
 public class Enemy : MonoBehaviour, IDamageable
 {
     #region Class variables
-    [SerializeField] private Player player;
+    [SerializeField] protected Player player;
     [SerializeField] public LayerMask playerMask;
-    [SerializeField] private TwoD_Grid grid;
+    [SerializeField] protected TwoD_Grid grid;
     [SerializeField] private TextMeshProUGUI stateText;
     [SerializeField] protected float speed;
     [SerializeField] public float chaseRad;
@@ -87,8 +87,6 @@ public class Enemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Awake()
     {
-        if(player == null)
-            player = GameObject.Find("Player").GetComponent<Player>();
         AssignComponents();
     }
 
@@ -214,6 +212,8 @@ public class Enemy : MonoBehaviour, IDamageable
     #region Protected for specific AI
     protected void AssignComponents()
     {
+        if(player == null)
+            player = GameObject.Find("Player").GetComponent<Player>();
         foreach (AttackSOBase attack in attackSOBase)
         {
             instAttackBase.Add(Instantiate(attack));
@@ -248,6 +248,8 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     protected void AssignComponentsForBosses()
     {
+        if(player == null)
+            player = GameObject.Find("Player").GetComponent<Player>();
         foreach (AttackSOBase attack in attackSOBase)
         {
             instAttackBase.Add(Instantiate(attack));

@@ -6,12 +6,10 @@ public class Soldier : Enemy
 {
     [SerializeField] private CollisionCheck head;
     [SerializeField] private Transform ppHole;
-    [SerializeField] private AnimationCurve moveFlighCurve;
     [SerializeField] private float flightActivationRange;
-    [SerializeField] private float flightSpeed;
+    [SerializeField] private float heightOfFlight;
 
-    bool flightEnded = true;
-    bool flightStarted = true;
+    Vector3 target;
     float curTime;
     float baseElevation;
     float defSpeed;
@@ -32,34 +30,29 @@ public class Soldier : Enemy
     {
         UpdateCall();
         
-        if(vec.magnitude > flightActivationRange || flightStarted)
+        if(vec.magnitude > flightActivationRange && canTransition)
         {
-            StartFlight(moveFlighCurve, ref curTime);
+            canTransition = false;
+            enemyRb.velocity = Predict();
+            target = vec + transform.position;
+        }else if((transform.position - target).magnitude < grid.nodeRadius && !canTransition)
+        {
+            canTransition = true;
         }
-        if(changedVec)
-            EndFlight();
     }
 
-    private void StartFlight(AnimationCurve curve, ref float time)
+    private Vector3 Predict()
     {
-        if(!flightStarted)
-        {
-            speed = flightSpeed;
-            baseElevation = transform.position.y;
-        }
-        enemyRb.useGravity = false;
-        time += Time.deltaTime;
-        flightStarted = true;
-        enemyRb.position = new Vector3(transform.position.x + enemyRb.velocity.x, baseElevation + 
-            curve.Evaluate(time), transform.position.z + enemyRb.velocity.z);
-    }
-
-    private void EndFlight()
-    {
-        enemyRb.useGravity = true;
-        flightStarted = false;
-        flightEnded = true;
-        curTime = 0f;
-        speed = defSpeed;
+        //Initialize variables
+        Vector3 s = vec;
+        float g = -Physics.gravity.magnitude;
+        float h = s.y + heightOfFlight;
+        if(h < heightOfFlight)
+            h = heightOfFlight;
+        //Calculate
+        Vector3 disInXZ = new Vector3(s.x, 0f, s.z);
+        Vector3 velY = Vector3.up * Mathf.Sqrt(-2 * g * h);
+        Vector3 velXZ = disInXZ / (Mathf.Sqrt(-2 * h/g) + Mathf.Sqrt(2 *(s.y - h)/g));
+        return velY + velXZ;
     }
 }
