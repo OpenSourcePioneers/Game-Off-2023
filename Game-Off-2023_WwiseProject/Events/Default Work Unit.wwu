@@ -32,6 +32,35 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="2D_Music" ID="{883F85DD-2F27-4FBA-8ECA-4364953EAC31}" ShortID="293770586">
+					<ChildrenList>
+						<Event Name="Play_2D_Music" ID="{6C16AADB-8413-48CB-B7DD-B5AA65079B9A}">
+							<ChildrenList>
+								<Action Name="" ID="{EF1861EF-B39A-4A9F-8B66-54A652A7AA1F}" ShortID="538318347">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Music_2D" ID="{8CB8D1D7-FD11-4631-A6FC-9E7CB98AEEB9}" WorkUnitID="{D581061C-CFB2-4FE5-AE11-541C56AC78F3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_2D_Music" ID="{981C73FB-EFB3-4CF6-AB08-40367AB4342C}">
+							<ChildrenList>
+								<Action Name="" ID="{9064F317-5C24-415C-80DE-25B705C9AE61}" ShortID="112078192">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Music_2D" ID="{8CB8D1D7-FD11-4631-A6FC-9E7CB98AEEB9}" WorkUnitID="{D581061C-CFB2-4FE5-AE11-541C56AC78F3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
