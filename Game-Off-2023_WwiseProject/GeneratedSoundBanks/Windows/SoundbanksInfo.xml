@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{E7FAD74B-A94E-221F-CE76-B9AE1B21B102}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{4FB7FD40-7A91-87DB-D85F-F923D0F485A8}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -19,18 +19,104 @@
 				</AudioDevices>
 			</Plugins>
 			<Busses>
+				<Bus Id="393239870" Name="SFX"/>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
+				<Bus Id="3991942870" Name="Music"/>
 			</Busses>
+			<StateGroups>
+				<StateGroup Id="1939884427" Name="Music_2D">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="1111193369" Name="Combat_01"/>
+						<State Id="1111193370" Name="Combat_02"/>
+						<State Id="2582085496" Name="Exploration"/>
+						<State Id="4012189662" Name="QueenBoss"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1465331116" Type="User" Language="SFX" Hash="{F685E5D6-0641-CF91-DDC0-331308BA5456}">
+		<SoundBank Id="1465331116" Type="User" Language="SFX" Hash="{308F34EA-392A-CF9A-3BA4-9F038F3269D0}">
 			<ShortName>Global</ShortName>
 			<Path>Global.bnk</Path>
+			<Media>
+				<File Id="63122866" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>2D_Music\Combat_2_Intro.wav</ShortName>
+					<CachePath>SFX/2D_Music/Combat_2_Intro_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="70721578" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>2D_Music\Combat_1_Loop.wav</ShortName>
+					<CachePath>SFX/2D_Music/Combat_1_Loop_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="70877277" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>2D_Music\Queen_Ant_Intro.wav</ShortName>
+					<CachePath>SFX/2D_Music/Queen_Ant_Intro_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="403518514" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>2D_Music\Queen_Ant_Loop.wav</ShortName>
+					<CachePath>SFX/2D_Music/Queen_Ant_Loop_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="428078047" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>2D_Music\Combat_2_Loop.wav</ShortName>
+					<CachePath>SFX/2D_Music/Combat_2_Loop_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="536945712" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>2D_Music\Cute_Loop_Only.wav</ShortName>
+					<CachePath>SFX/2D_Music/Cute_Loop_Only_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="772291233" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>2D_Music\Combat_1_Intro.wav</ShortName>
+					<CachePath>SFX/2D_Music/Combat_1_Intro_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="854485494" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>2D_Music\Eerie_Loop_Only.wav</ShortName>
+					<CachePath>SFX/2D_Music/Eerie_Loop_Only_D79FB2B7.wem</CachePath>
+				</File>
+			</Media>
 			<Plugins>
 				<Custom>
 					<Plugin Id="131694268" Name="Synth One" LibName="Wwise Synth One" LibId="9699330"/>
 				</Custom>
 			</Plugins>
 			<Events>
+				<Event Id="1931726204" Name="Play_2D_Music" DurationType="Infinite">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="1939884427" Id="2582085496"/>
+							<MediaRefs>
+								<MediaRef Id="536945712"/>
+								<MediaRef Id="854485494"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="1939884427" Id="1111193369"/>
+							<MediaRefs>
+								<MediaRef Id="70721578"/>
+								<MediaRef Id="772291233"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="1939884427" Id="1111193370"/>
+							<MediaRefs>
+								<MediaRef Id="63122866"/>
+								<MediaRef Id="428078047"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="1939884427" Id="4012189662"/>
+							<MediaRefs>
+								<MediaRef Id="70877277"/>
+								<MediaRef Id="403518514"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="1939884427" Id="748895195"/>
+							<MediaRefs>
+								<MediaRef Id="536945712"/>
+								<MediaRef Id="854485494"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
 				<Event Id="670160927" Name="Play_Debug_01" DurationType="Unknown">
 					<PluginRefs>
 						<Custom>
@@ -38,9 +124,21 @@
 						</Custom>
 					</PluginRefs>
 				</Event>
+				<Event Id="2367458202" Name="Stop_2D_Music" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="3377468577" Name="Stop_Debug_01" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
+			<StateGroups>
+				<StateGroup Id="1939884427" Name="Music_2D">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="1111193369" Name="Combat_01"/>
+						<State Id="1111193370" Name="Combat_02"/>
+						<State Id="2582085496" Name="Exploration"/>
+						<State Id="4012189662" Name="QueenBoss"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{F4A8F56E-EEF9-824B-7192-0E4AE520387F}</FileHash>
+	<FileHash>{4679A59F-40C1-F6AF-0292-4BAE67F8591A}</FileHash>
 </SoundBanksInfo>
