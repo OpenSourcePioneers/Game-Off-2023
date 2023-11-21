@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53c995dae9344ac4a2dbfce12029332, type: 3}
   m_Name: RandomWanderer
   m_EditorClassIdentifier: 
-  viewRad: 80
+  viewRad: 50
   wanderRange: 40
   minWait: 2
   maxWait: 5

@@ -18,7 +18,7 @@ public class ChaseSOBase : ScriptableObject
         player = GameObject.Find("Player").GetComponent<Player>();
     }
 
-    public virtual void DoEnterState() {}
+    public virtual void DoEnterState() {enemy.ResetPath();}
     public virtual void DoFrameUpdate() {}
     public virtual void DoFixedFrameUpdate() {}
     public virtual void DoExitState() {enemy.ResetPath();}

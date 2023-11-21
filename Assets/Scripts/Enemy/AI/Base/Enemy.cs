@@ -9,29 +9,34 @@ public class Enemy : MonoBehaviour, IDamageable
     #region Class variables
     [SerializeField] protected Player player;
     [SerializeField] public LayerMask playerMask;
+    [SerializeField] private LayerMask walkable;
     [SerializeField] protected TwoD_Grid grid;
     [SerializeField] private TextMeshProUGUI stateText;
-    [SerializeField] protected float speed;
+    [SerializeField] public float speed;
     [SerializeField] public float chaseRad;
     [SerializeField] private float rotSpeed;
 
+    [HideInInspector] public Vector3 vec;
     [HideInInspector] public LayerMask obstacle;
     [HideInInspector] public bool lockedAtTarget;
     [HideInInspector] public bool finishedPath = false;
     [HideInInspector] public float disToPlayer;
+    [HideInInspector] public float defSpeed;
     [HideInInspector] public int attackInd;
     #endregion
 
     #region  Private variables
+    Coroutine waitCoroutine;
     protected Rigidbody enemyRb;
     List<float> dRadius = new List<float>();
     List<Color> dColor = new List<Color>();
     Vector3[] path = new Vector3[0];
-    protected Vector3 vec;
     bool gettingPath = true;
     bool canMove;
     public bool canTransition = true;
     protected bool changedVec;
+    public bool WalkState = true;
+    float size;
     int pathInd;
     #endregion
 
@@ -45,8 +50,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     #region Scriptable Object variables
     [SerializeField] private List<AttackSOBase> attackSOBase;
-    [SerializeField] private ChaseSOBase chaseSOBase;
     [SerializeField] private CombatSOBase combatSOBase;
+    [SerializeField] private ChaseSOBase chaseSOBase;
     [SerializeField] private WanderSOBase wanderSOBase;
     public List<AttackSOBase> instAttackBase {get; set;} = new List<AttackSOBase>();
     public ChaseSOBase instChaseBase {get; set;}
@@ -103,10 +108,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void FixedUpdate()
     {
-        if(canTransition)
-            machine.curState.FixedFrameUpdate();
+        FixedUpdateCall();
     }
 
+    #region Movement
     void CheckPath(Vector3[] _path, bool pathFound)
     {
         if(pathFound)
@@ -119,11 +124,13 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    public void Move()
+    public void Move(bool _canMove = false)
     {
+        if(_canMove == false)
+            _canMove = canMove;
         Vector3 dir = new Vector3(vec.x, 0f, vec.z);
         //Movement
-        if(enemyRb.velocity.sqrMagnitude < speed * speed && canMove)
+        if(enemyRb.velocity.sqrMagnitude < speed * speed && _canMove)
         {
             enemyRb.AddForce(dir.normalized * speed * Universe.forceMult * 
                 Time.fixedDeltaTime, ForceMode.Force);
@@ -154,26 +161,38 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void PushPathRequest(Vector3 target)
     {
+        Vector3 dVec = target - transform.position;
+        Ray ray = new Ray(transform.position, dVec.normalized);
+        if(Physics.Raycast(ray, dVec.magnitude, grid.unwalkableMask))
+        {
+            gettingPath = true;
+            Vector3[] v = new Vector3[1];
+            v[0] = target;
+            CheckPath(v, true);
+            return;
+        }
         gettingPath = true;
         PathManager.RequestPath(transform.position, target, CheckPath);
     }
+    #endregion
 
-    public void RotateToTarget(Vector3 target)
+    #region Utility
+    public void RotateToTarget(Vector3 target, bool direct = false)
     {
-        target = target - transform.position;
-        target = new Vector3(target.x, 0f, target.z);
+        target -= transform.position;
+        if(!direct)
+            target = new Vector3(target.x, 0f, target.z);
         transform.forward = Vector3.Slerp(transform.forward, target, rotSpeed * Time.deltaTime);
     }
 
-
-    public bool AimAtPlayer(float time, ref float curTime)
+    public bool AimAtPlayer(float time, ref float curTime, bool direct = false)
     {
         Ray ray = new Ray(transform.position, transform.forward.normalized);
-        if(!Physics.Raycast(ray, chaseRad * 2, playerMask))
+        if(!Physics.SphereCast(ray, 0.1f, chaseRad * 2, playerMask))
         {
-
             //Rotate to look at player
-            RotateToTarget(player.transform.position);
+            RotateToTarget(player.transform.position, direct);
+
             lockedAtTarget = true;
             curTime = 0f;
         }
@@ -189,25 +208,37 @@ public class Enemy : MonoBehaviour, IDamageable
         return false;
     }
 
+    public bool GroundCheck()
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);
+        if(Physics.Raycast(ray, size + 0.1f, walkable))
+            return true;
+        return false;
+    }
+
     public void CallAfterTime(float time, Action<bool> callback)
     {
-        StartCoroutine(Wait(time, callback));
+        waitCoroutine = StartCoroutine(Wait(time, callback));
     }
 
     private IEnumerator Wait(float time, Action<bool> callback)
     {
         yield return new WaitForSeconds(time);
         callback(true);
+        waitCoroutine = null;
     }
 
     public void ResetPath()
     {
         gettingPath = false;
         finishedPath = true;
+        vec = transform.position;
         path = new Vector3[0];
         pathInd = 0;
-        StopCoroutine("Wait");
+        if(waitCoroutine != null)
+            StopCoroutine(waitCoroutine);
     }
+    #endregion
 
     #region Protected for specific AI
     protected void AssignComponents()
@@ -233,8 +264,11 @@ public class Enemy : MonoBehaviour, IDamageable
     protected void InitializeStates()
     {
         curHealth = maxHealth;
+        size = GetComponent<Collider>().bounds.extents.y;
+        defSpeed = speed;
         disToPlayer = (player.transform.position - transform.position).magnitude;
         obstacle = grid.unwalkableMask;
+        //Initialize States
         foreach (AttackSOBase instAttack in instAttackBase)
         {
             instAttack.Initialize(this, gameObject);
@@ -248,8 +282,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     protected void AssignComponentsForBosses()
     {
-        if(player == null)
-            player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.Find("Player").GetComponent<Player>();
         foreach (AttackSOBase attack in attackSOBase)
         {
             instAttackBase.Add(Instantiate(attack));
@@ -264,12 +297,16 @@ public class Enemy : MonoBehaviour, IDamageable
     protected void InitializeStatesForBosses()
     {
         curHealth = maxHealth;
+        size = GetComponent<Collider>().bounds.extents.y;
+        defSpeed = speed;
         disToPlayer = (player.transform.position - transform.position).magnitude;
+        obstacle = grid.unwalkableMask;
+        //Initialize States
         foreach (AttackSOBase instAttack in instAttackBase)
         {
             instAttack.Initialize(this, gameObject);
         }
-        instCombatBase.Initialize(this, gameObject);
+        instCombatBase.Initialize(this, gameObject, true);
         machine.SetState(combat);
     }
 
@@ -281,6 +318,11 @@ public class Enemy : MonoBehaviour, IDamageable
             disToPlayer = (player.transform.position - transform.position).magnitude;
             machine.curState.FrameUpdate();
         }
+    }
+    protected void FixedUpdateCall() 
+    {
+        if(canTransition)
+        machine.curState.FixedFrameUpdate();
     }
 
     #endregion
@@ -310,8 +352,6 @@ public class Enemy : MonoBehaviour, IDamageable
             Gizmos.color = dColor[i];
             Gizmos.DrawWireSphere(transform.position, dRadius[i]);
         }
-        Gizmos.color = Color.blue;
-        Gizmos.DrawCube(player.transform.position, Vector3.one * 5f);
     }
     #endregion
 }

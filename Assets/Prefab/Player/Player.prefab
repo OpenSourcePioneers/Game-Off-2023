@@ -294,16 +294,16 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.26127237
     - serializedVersion: 3
-      time: 0.13164604
-      value: 85.95856
-      inSlope: -717.72974
-      outSlope: -717.72974
+      time: 0.2580179
+      value: 91.92098
+      inSlope: -546.9217
+      outSlope: -546.9217
       tangentMode: 0
       weightedMode: 3
-      inWeight: 1
+      inWeight: 0.5427485
       outWeight: 0.541189
     - serializedVersion: 3
-      time: 0.2
+      time: 0.4
       value: 0.9
       inSlope: -56.22633
       outSlope: -56.22633
@@ -316,16 +316,16 @@ MonoBehaviour:
     m_RotationOrder: 4
   grounded: 0
   wSpeed: 20
-  rSpeed: 50
+  rSpeed: 45
   aSpeed: 15
   rbDrag: 5
-  rotSpeed: 10
+  rotSpeed: 12
+  dashDelay: 1
   walkable:
     serializedVersion: 2
     m_Bits: 64
   inp: {x: 0, y: 0, z: 0}
-  <maxHealth>k__BackingField: 10
-  <curHealth>k__BackingField: 0
+  <maxHealth>k__BackingField: 200
 --- !u!1 &8575583410228433582
 GameObject:
   m_ObjectHideFlags: 0
