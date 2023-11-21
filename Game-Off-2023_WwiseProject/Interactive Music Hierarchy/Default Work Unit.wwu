@@ -5,6 +5,13 @@
 			<ChildrenList>
 				<Folder Name="Imported Files" ID="{25A1A7D0-F299-47E5-9DBE-B28FC67A0040}" ShortID="745409132"/>
 				<MusicSwitchContainer Name="Music_2D" ID="{8CB8D1D7-FD11-4631-A6FC-9E7CB98AEEB9}" ShortID="1028112707">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-13</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B499A76F-A9B9-4C32-9F8E-9E9EA72940F9}"/>
