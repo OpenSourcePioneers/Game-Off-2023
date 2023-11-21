@@ -40,7 +40,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1465331116" Type="User" Language="SFX" Hash="{7A301117-06E3-086B-5CE3-D464C1DBA5D2}">
+		<SoundBank Id="1465331116" Type="User" Language="SFX" Hash="{238AFB7A-974E-631C-4510-56107F332B9A}">
 			<ShortName>Global</ShortName>
 			<Path>Global.bnk</Path>
 			<Media>
@@ -157,6 +157,7 @@
 			<Plugins>
 				<Custom>
 					<Plugin Id="131694268" Name="Synth One" LibName="Wwise Synth One" LibId="9699330"/>
+					<Plugin Id="824633922" Name="Synth One" LibName="Wwise Synth One" LibId="9699330"/>
 				</Custom>
 			</Plugins>
 			<Events>
@@ -206,6 +207,13 @@
 						</Custom>
 					</PluginRefs>
 				</Event>
+				<Event Id="59945695" Name="Play_Debug_Blip" DurationType="Unknown">
+					<PluginRefs>
+						<Custom>
+							<PluginRef Id="824633922"/>
+						</Custom>
+					</PluginRefs>
+				</Event>
 				<Event Id="3984962914" Name="Play_Ext_Amb_Forest" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="108454985"/>
@@ -231,6 +239,7 @@
 				</Event>
 				<Event Id="2367458202" Name="Stop_2D_Music" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="3377468577" Name="Stop_Debug_01" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3197058085" Name="Stop_Debug_Blip" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="3490275236" Name="Stop_Ext_Amb_Forest" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
 			<StateGroups>
@@ -246,5 +255,5 @@
 			</StateGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{EEC41663-E1C3-09D0-49D6-D67475CEA327}</FileHash>
+	<FileHash>{E3DC1D55-CE3F-2284-4858-F9F5F22121CD}</FileHash>
 </SoundBanksInfo>

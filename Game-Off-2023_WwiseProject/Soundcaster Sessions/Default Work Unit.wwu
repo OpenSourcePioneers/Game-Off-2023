@@ -9,6 +9,14 @@
 							<ObjectRef Name="Play_2D_Music" ID="{6C16AADB-8413-48CB-B7DD-B5AA65079B9A}" WorkUnitID="{377F6183-9C0E-40B9-81D8-FE667E5D1593}"/>
 							<Position X="0" Y="0"/>
 						</Module>
+						<Module>
+							<ObjectRef Name="Play_Debug_Blip" ID="{FDA2D49A-4962-4307-8253-2544A54EB3E1}" WorkUnitID="{377F6183-9C0E-40B9-81D8-FE667E5D1593}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Stop_Debug_Blip" ID="{71D0DE18-526D-4B81-AB4A-053BE5F71197}" WorkUnitID="{377F6183-9C0E-40B9-81D8-FE667E5D1593}"/>
+							<Position X="1" Y="1"/>
+						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true"/>
 					<CurrentStateList ShowAll="true">

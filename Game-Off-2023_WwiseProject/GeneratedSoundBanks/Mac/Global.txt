@@ -1,7 +1,9 @@
 Event	ID	Name			Wwise Object Path	Notes
+	59945695	Play_Debug_Blip			\Default Work Unit\Debug\Play_Debug_Blip	
 	670160927	Play_Debug_01			\Default Work Unit\Debug\Play_Debug_01	
 	1931726204	Play_2D_Music			\Default Work Unit\2D_Music\Play_2D_Music	
 	2367458202	Stop_2D_Music			\Default Work Unit\2D_Music\Stop_2D_Music	
+	3197058085	Stop_Debug_Blip			\Default Work Unit\Debug\Stop_Debug_Blip	
 	3377468577	Stop_Debug_01			\Default Work Unit\Debug\Stop_Debug_01	
 	3490275236	Stop_Ext_Amb_Forest			\Default Work Unit\Environment\Stop_Ext_Amb_Forest	
 	3984962914	Play_Ext_Amb_Forest			\Default Work Unit\Environment\Play_Ext_Amb_Forest	
@@ -18,9 +20,11 @@ State	ID	Name	State Group			Notes
 
 Modulator Envelope	ID	Name			Wwise Object Path	Notes
 	227085724	Modulator Envelope (Custom)				
+	913964377	Modulator Envelope (Custom)				
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	131694268	Synth One	Wwise Synth One		\Actor-Mixer Hierarchy\Default Work Unit\Debug\600\Synth One	
+	824633922	Synth One	Wwise Synth One		\Actor-Mixer Hierarchy\Default Work Unit\Debug\Debug_ScatterEmit_test\ENV_Birds\Debug_ScatterEmit_Blip\Synth One	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	63122866	Combat_2_Intro	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Mac\SFX\2D_Music\Combat_2_Intro_0762CC47.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Combat_02\Combat_2_Intro\Combat_2_Intro		22375
