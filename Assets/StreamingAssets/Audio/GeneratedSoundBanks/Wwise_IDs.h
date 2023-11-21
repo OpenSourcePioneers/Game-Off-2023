@@ -15,8 +15,10 @@ namespace AK
     {
         static const AkUniqueID PLAY_2D_MUSIC = 1931726204U;
         static const AkUniqueID PLAY_DEBUG_01 = 670160927U;
+        static const AkUniqueID PLAY_EXT_AMB_FOREST = 3984962914U;
         static const AkUniqueID STOP_2D_MUSIC = 2367458202U;
         static const AkUniqueID STOP_DEBUG_01 = 3377468577U;
+        static const AkUniqueID STOP_EXT_AMB_FOREST = 3490275236U;
     } // namespace EVENTS
 
     namespace STATES
@@ -45,9 +47,14 @@ namespace AK
 
     namespace BUSSES
     {
+        static const AkUniqueID ENEMY = 2299321487U;
+        static const AkUniqueID ENVIRONMENT_2D = 3232299777U;
+        static const AkUniqueID ENVIRONMENT_3D = 3215522230U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID PLAYERCHARACTER = 592691923U;
         static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID UI = 1551306167U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES

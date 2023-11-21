@@ -10,7 +10,16 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<Bus Name="SFX" ID="{161C60D8-3509-44E5-82B9-42DAA17EC636}"/>
+						<Bus Name="SFX" ID="{161C60D8-3509-44E5-82B9-42DAA17EC636}">
+							<ChildrenList>
+								<Bus Name="PlayerCharacter" ID="{FC1D4901-53A0-46BA-B746-5C038C987ED7}"/>
+								<Bus Name="Enemy" ID="{E1FB723A-9E17-413E-9888-08DA2BD13854}"/>
+								<Folder Name="Reverb" ID="{6CB1CB25-BB23-44A8-AA49-1D49DE319FC2}" ShortID="1036308593"/>
+								<Bus Name="UI" ID="{CAF18C20-6E5E-4415-856D-15E7E2308145}"/>
+								<Bus Name="Environment_2D" ID="{F42A9665-242B-497F-ABC0-F4B0E4656F6C}"/>
+								<Bus Name="Environment_3D" ID="{AA11153C-24E4-4628-8D8E-40F9FB5E1D4C}"/>
+							</ChildrenList>
+						</Bus>
 						<Bus Name="Music" ID="{651E90B7-6577-4282-ADC8-4BF899FBA215}"/>
 					</ChildrenList>
 				</Bus>
