@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f82b53cbe94a492a8a9bbaadf584469, type: 3}
   m_Name: CircleAround
   m_EditorClassIdentifier: 
-  attackTime: 1
-  cirRange: 20
+  attackTime: 5
+  cirRange: 10
   minWait: 2
   maxWait: 8

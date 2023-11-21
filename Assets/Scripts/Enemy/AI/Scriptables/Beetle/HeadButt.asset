@@ -50,3 +50,4 @@ MonoBehaviour:
   damage: 1
   aimTime: 1
   concussionAmount: 2
+  concussionWhenHitWall: 5

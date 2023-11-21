@@ -9,7 +9,8 @@ public class HeadButt : AttackSOBase
     [SerializeField] private float damage;
     [SerializeField] private float aimTime;
     [SerializeField] private float concussionAmount;
-
+    [SerializeField] private float concussionWhenHitWall;
+    
     List<Collider> damagedCollider = new List<Collider>();
     float time;
     float refTime;
@@ -70,6 +71,8 @@ public class HeadButt : AttackSOBase
             iDamageable.Damage(damage, collider.ClosestPoint(transform.position));
             iDamageable.Concussion(concussionAmount);
         }
+        else if(canAttack && collider.gameObject.layer == enemy.obstacle)
+            enemy.Concussion(concussionWhenHitWall);
     }
 
     private void HeadButtTheTarget()

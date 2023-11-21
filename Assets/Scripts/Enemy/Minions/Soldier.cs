@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Soldier : Enemy
+public class Soldier : Enemy, IIsAFlyer
 {
     [SerializeField] private CollisionCheck head;
     [SerializeField] private Transform ppHole;
+    [SerializeField] private AnimationCurve moveFlighCurve;
     [SerializeField] private float flightActivationRange;
     [SerializeField] private float heightOfFlight;
+    [SerializeField] private float flightSpeed;
 
     Vector3 target;
     float curTime;
     float baseElevation;
-    float defSpeed;
+    bool flightEnded = true;
+    [HideInInspector] public bool flightStarted = false;
 
     void Start()
     {
@@ -23,36 +26,62 @@ public class Soldier : Enemy
             attack.head = head;
         }
         curTime = 0f;
-        defSpeed = speed;
     }
 
     void Update()
     {
         UpdateCall();
-        
-        if(vec.magnitude > flightActivationRange && canTransition)
+        if(WalkState)
         {
-            canTransition = false;
-            enemyRb.velocity = Predict();
-            target = vec + transform.position;
-        }else if((transform.position - target).magnitude < grid.nodeRadius && !canTransition)
+            if(vec.magnitude > flightActivationRange || flightStarted)
+                StartFlight(moveFlighCurve, ref curTime);
+        }
+        if((changedVec && flightStarted) || !canTransition)
+            EndFlight(ref curTime);
+    }
+
+    void FixedUpdate()
+    {
+        DoFlight(heightOfFlight);
+        FixedUpdateCall();
+    }
+
+    public void StartFlight(AnimationCurve curve, ref float time)
+    {
+        if(!flightStarted)
         {
-            canTransition = true;
+            baseElevation = transform.position.y;
+            enemyRb.useGravity = false;
+            speed = flightSpeed;
+        }
+
+        flightStarted = true;
+        target = transform.up * curve.Evaluate(time);
+        time += Time.deltaTime;
+
+    }
+
+    public void DoFlight(float height, float randomness = 1f)
+    {
+        if(flightStarted)
+        {
+            if(transform.position.y < Random.Range(height, height + randomness))
+            {
+                enemyRb.MovePosition(transform.position + target);
+            }
+            else
+            {
+                enemyRb.MovePosition(transform.position - target);
+            }
         }
     }
 
-    private Vector3 Predict()
+    public void EndFlight(ref float time)
     {
-        //Initialize variables
-        Vector3 s = vec;
-        float g = -Physics.gravity.magnitude;
-        float h = s.y + heightOfFlight;
-        if(h < heightOfFlight)
-            h = heightOfFlight;
-        //Calculate
-        Vector3 disInXZ = new Vector3(s.x, 0f, s.z);
-        Vector3 velY = Vector3.up * Mathf.Sqrt(-2 * g * h);
-        Vector3 velXZ = disInXZ / (Mathf.Sqrt(-2 * h/g) + Mathf.Sqrt(2 *(s.y - h)/g));
-        return velY + velXZ;
+        enemyRb.useGravity = true;
+        speed = defSpeed;
+        flightStarted = false;
+        flightEnded = true;
+        time = 0f;
     }
 }

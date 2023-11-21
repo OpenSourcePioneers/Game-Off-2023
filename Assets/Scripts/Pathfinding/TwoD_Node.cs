@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TwoD_Node
 {
-	public bool walkable;
+	public bool walkable {get; set;}
 	public bool spawned = false;
 	public Vector3 nodePosition;
 	public int gridX;

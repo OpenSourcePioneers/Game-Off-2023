@@ -19,7 +19,7 @@ public class WanderSOBase : ScriptableObject
         enemy.DebugCircle(viewRad, Color.white);
     }
 
-    public virtual void DoEnterState() {}
+    public virtual void DoEnterState() {enemy.ResetPath();}
     public virtual void DoFrameUpdate() 
     {
         DoTransitionCheck();

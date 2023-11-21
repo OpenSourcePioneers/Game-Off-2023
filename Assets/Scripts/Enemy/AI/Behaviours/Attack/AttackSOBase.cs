@@ -7,7 +7,7 @@ public class AttackSOBase : ScriptableObject
     protected Enemy enemy;
     protected GameObject gameObject;
     protected Transform transform;
-    protected Player player;
+    protected Transform player;
     protected Rigidbody enemyRb;
     protected bool canAttack;
     [HideInInspector] public CollisionCheck head;
@@ -19,24 +19,32 @@ public class AttackSOBase : ScriptableObject
         enemy = _enemy;
         gameObject = _gameObject;
         transform = gameObject.transform;
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.Find("Player").GetComponent<Transform>();
         enemyRb = enemy.GetComponent<Rigidbody>();
     }
 
     public virtual void DoEnterState() 
     {
+        enemy.WalkState = false;
         canAttack = false;
         curTime = 0f;
+        enemy.ResetPath();
     }
     public virtual void DoFrameUpdate() {}
     public virtual void DoFixedFrameUpdate() {}
-    public virtual void DoExitState() {canAttack = false; enemy.ResetPath();}
+    public virtual void DoExitState()
+    {
+        canAttack = false; 
+        curTime = 0f;
+        enemy.WalkState = true;
+        enemy.ResetPath(); 
+    }
     public virtual void DoTransitionCheck() {}
     public virtual void DoCollisionCheck(Collider collider) {}
-    protected bool Timeout()
+    protected bool Timeout(float maxTime = 10f)
     {
         curTime += Time.deltaTime;
-        if(curTime > 10f)
+        if(curTime > maxTime)
         {
             return true;
         }

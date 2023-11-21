@@ -11,8 +11,6 @@ public class Melee : AttackSOBase
     Vector3 target;
     float refTime;
     bool damaged;
-    Color defColor;
-    MeshRenderer renderer;
 
     public override void DoEnterState()
     {
@@ -23,9 +21,6 @@ public class Melee : AttackSOBase
         enemy.PushPathRequest(target);
         head.AssignBehaviour(this);
         enemy.DebugCircle(attackRange, Color.green);
-        renderer =  enemy.GetComponentInChildren<MeshRenderer>();
-        defColor = renderer.material.color;
-        renderer.material.color = Color.red;
     }
     public override void DoFrameUpdate()
     {
@@ -67,7 +62,6 @@ public class Melee : AttackSOBase
     public override void DoExitState()
     {
         base.DoExitState();
-        renderer.material.color = defColor;
         enemy.lockedAtTarget = false;
     }
     public override void DoTransitionCheck()

@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4955f1110f44db194fc39a88c085c2, type: 3}
+  m_Name: Bodyslam
+  m_EditorClassIdentifier: 
+  head: {fileID: 0}
+  shootTrans: {fileID: 0}
+  forceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.11791992
+      inSlope: 1.552669
+      outSlope: 1.552669
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1.481606
+      value: 51.901573
+      inSlope: -0.113250725
+      outSlope: -0.113250725
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.5208334
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.4857726
+      value: 0.7389058
+      inSlope: -94.16573
+      outSlope: -94.16573
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.49653322
+      outWeight: 0.06593287
+    - serializedVersion: 3
+      time: 2.967776
+      value: -149.8215
+      inSlope: -1.507696
+      outSlope: -1.507696
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 1
+      outWeight: 1
+    - serializedVersion: 3
+      time: 4.7900724
+      value: 1.3706348
+      inSlope: 120.26581
+      outSlope: 120.26581
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.066665016
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  damage: 15
+  damageRadius: 30
+  concussionAmount: 5
