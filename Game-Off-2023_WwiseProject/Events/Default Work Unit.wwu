@@ -32,10 +32,10 @@
 						</Event>
 						<Event Name="Play_Debug_Blip" ID="{FDA2D49A-4962-4307-8253-2544A54EB3E1}">
 							<ChildrenList>
-								<Action Name="" ID="{3563229F-5F3E-4A52-8659-3F5A94495A62}" ShortID="134102175">
+								<Action Name="" ID="{3FF28287-25A5-4F3F-A985-FC0E9CF655B8}" ShortID="450656911">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Debug_ScatterEmit_Blip" ID="{AC9C7F1D-E5AF-4FCE-B3F1-32A1332006A2}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
+											<ObjectRef Name="Debug_ScatterEmit_test" ID="{D572975F-E779-412C-AB69-59231B85CB48}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

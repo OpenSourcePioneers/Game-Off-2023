@@ -17,10 +17,12 @@ namespace AK
         static const AkUniqueID PLAY_DEBUG_01 = 670160927U;
         static const AkUniqueID PLAY_DEBUG_BLIP = 59945695U;
         static const AkUniqueID PLAY_EXT_AMB_FOREST = 3984962914U;
+        static const AkUniqueID PLAY_PC_FOOTSTEP = 4047136094U;
         static const AkUniqueID STOP_2D_MUSIC = 2367458202U;
         static const AkUniqueID STOP_DEBUG_01 = 3377468577U;
         static const AkUniqueID STOP_DEBUG_BLIP = 3197058085U;
         static const AkUniqueID STOP_EXT_AMB_FOREST = 3490275236U;
+        static const AkUniqueID STOP_PC_FOOTSTEP = 905364984U;
     } // namespace EVENTS
 
     namespace STATES

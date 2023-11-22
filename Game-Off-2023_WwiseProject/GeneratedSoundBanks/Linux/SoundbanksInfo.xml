@@ -40,10 +40,14 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1465331116" Type="User" Language="SFX" Hash="{238AFB7A-974E-631C-4510-56107F332B9A}">
+		<SoundBank Id="1465331116" Type="User" Language="SFX" Hash="{F20118DB-A57D-7A72-AA1D-209CD1BF346D}">
 			<ShortName>Global</ShortName>
 			<Path>Global.bnk</Path>
 			<Media>
+				<File Id="6632803" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_gen_06.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_gen_06_D8C07C79.wem</CachePath>
+				</File>
 				<File Id="63122866" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>2D_Music\Combat_2_Intro.wav</ShortName>
 					<CachePath>SFX/2D_Music/Combat_2_Intro_0762CC47.wem</CachePath>
@@ -56,6 +60,10 @@
 					<ShortName>2D_Music\Queen_Ant_Intro.wav</ShortName>
 					<CachePath>SFX/2D_Music/Queen_Ant_Intro_0762CC47.wem</CachePath>
 				</File>
+				<File Id="72770659" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_grass_02.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_grass_02_D8C07C79.wem</CachePath>
+				</File>
 				<File Id="108454985" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Environment\env_forest_emt_bird_04.wav</ShortName>
 					<CachePath>SFX/Environment/env_forest_emt_bird_04_D8C07C79.wem</CachePath>
@@ -63,6 +71,14 @@
 				<File Id="133702407" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Environment\env_forest_emt_bird_01.wav</ShortName>
 					<CachePath>SFX/Environment/env_forest_emt_bird_01_D8C07C79.wem</CachePath>
+				</File>
+				<File Id="166591232" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_gen_01.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_gen_01_D8C07C79.wem</CachePath>
+				</File>
+				<File Id="184594173" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_grass_04.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_grass_04_D8C07C79.wem</CachePath>
 				</File>
 				<File Id="223934751" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Environment\env_forest_emt_bushrustle_04.wav</ShortName>
@@ -80,6 +96,10 @@
 					<ShortName>Environment\env_forest_emt_crickets_04.wav</ShortName>
 					<CachePath>SFX/Environment/env_forest_emt_crickets_04_D8C07C79.wem</CachePath>
 				</File>
+				<File Id="374395614" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_grass_03.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_grass_03_D8C07C79.wem</CachePath>
+				</File>
 				<File Id="403518514" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>2D_Music\Queen_Ant_Loop.wav</ShortName>
 					<CachePath>SFX/2D_Music/Queen_Ant_Loop_0762CC47.wem</CachePath>
@@ -91,6 +111,10 @@
 				<File Id="428078047" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>2D_Music\Combat_2_Loop.wav</ShortName>
 					<CachePath>SFX/2D_Music/Combat_2_Loop_0762CC47.wem</CachePath>
+				</File>
+				<File Id="440856082" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_grass_06.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_grass_06_D8C07C79.wem</CachePath>
 				</File>
 				<File Id="479357957" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Environment\env_forest_emt_crickets_03.wav</ShortName>
@@ -104,6 +128,14 @@
 					<ShortName>2D_Music\Cute_Loop_Only.wav</ShortName>
 					<CachePath>SFX/2D_Music/Cute_Loop_Only_0762CC47.wem</CachePath>
 				</File>
+				<File Id="579440455" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_gen_05.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_gen_05_D8C07C79.wem</CachePath>
+				</File>
+				<File Id="581914588" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_grass_01.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_grass_01_D8C07C79.wem</CachePath>
+				</File>
 				<File Id="597382483" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Environment\env_desert_emt_bug_os_03.wav</ShortName>
 					<CachePath>SFX/Environment/env_desert_emt_bug_os_03_D8C07C79.wem</CachePath>
@@ -111,6 +143,18 @@
 				<File Id="660263742" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Environment\env_forest_emt_bushrustle_05.wav</ShortName>
 					<CachePath>SFX/Environment/env_forest_emt_bushrustle_05_D8C07C79.wem</CachePath>
+				</File>
+				<File Id="672392575" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_gen_03.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_gen_03_D8C07C79.wem</CachePath>
+				</File>
+				<File Id="767270325" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_gen_02.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_gen_02_D8C07C79.wem</CachePath>
+				</File>
+				<File Id="768868617" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_gen_04.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_gen_04_D8C07C79.wem</CachePath>
 				</File>
 				<File Id="772291233" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>2D_Music\Combat_1_Intro.wav</ShortName>
@@ -123,6 +167,10 @@
 				<File Id="854485494" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>2D_Music\Eerie_Loop_Only.wav</ShortName>
 					<CachePath>SFX/2D_Music/Eerie_Loop_Only_0762CC47.wem</CachePath>
+				</File>
+				<File Id="884670616" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player\chr_player_fs_grass_05.wav</ShortName>
+					<CachePath>SFX/Player/chr_player_fs_grass_05_D8C07C79.wem</CachePath>
 				</File>
 				<File Id="918184820" Language="SFX" Streaming="true" Location="Loose">
 					<ShortName>Environment\amb_ext_forest_01.wav</ShortName>
@@ -207,7 +255,7 @@
 						</Custom>
 					</PluginRefs>
 				</Event>
-				<Event Id="59945695" Name="Play_Debug_Blip" DurationType="Unknown">
+				<Event Id="59945695" Name="Play_Debug_Blip" MaxAttenuation="100" DurationType="Infinite">
 					<PluginRefs>
 						<Custom>
 							<PluginRef Id="824633922"/>
@@ -237,10 +285,27 @@
 						<MediaRef Id="1046013144"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="4047136094" Name="Play_PC_Footstep" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="6632803"/>
+						<MediaRef Id="72770659"/>
+						<MediaRef Id="166591232"/>
+						<MediaRef Id="184594173"/>
+						<MediaRef Id="374395614"/>
+						<MediaRef Id="440856082"/>
+						<MediaRef Id="579440455"/>
+						<MediaRef Id="581914588"/>
+						<MediaRef Id="672392575"/>
+						<MediaRef Id="767270325"/>
+						<MediaRef Id="768868617"/>
+						<MediaRef Id="884670616"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2367458202" Name="Stop_2D_Music" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="3377468577" Name="Stop_Debug_01" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="3197058085" Name="Stop_Debug_Blip" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="3490275236" Name="Stop_Ext_Amb_Forest" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="905364984" Name="Stop_PC_Footstep" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
 			<StateGroups>
 				<StateGroup Id="1939884427" Name="Music_2D">
@@ -255,5 +320,5 @@
 			</StateGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{E3DC1D55-CE3F-2284-4858-F9F5F22121CD}</FileHash>
+	<FileHash>{9054267E-D1A4-1865-3255-91EDB92FF614}</FileHash>
 </SoundBanksInfo>

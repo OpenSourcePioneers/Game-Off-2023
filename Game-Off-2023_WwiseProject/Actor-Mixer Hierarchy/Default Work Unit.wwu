@@ -90,7 +90,6 @@
 							<PropertyList>
 								<Property Name="3DPosition" Type="int16" Value="2"/>
 								<Property Name="3DSpatialization" Type="int16" Value="2"/>
-								<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 								<Property Name="HoldListenerOrientation" Type="bool" Value="True"/>
 								<Property Name="OverridePositioning" Type="bool" Value="True"/>
 							</PropertyList>
@@ -190,14 +189,10 @@
 								<RandomSequenceContainer Name="ENV_Birds" ID="{80188FD6-04D2-4931-BCBC-5EEA08356334}" ShortID="1069275410">
 									<PropertyList>
 										<Property Name="InitialDelay" Type="Real64">
-											<ValueList>
-												<Value>3</Value>
-											</ValueList>
 											<ModifierList>
 												<ModifierInfo>
 													<Modifier Name="" ID="{EE5160F9-C7B4-4DE8-9770-AFD6BB06089D}">
 														<PropertyList>
-															<Property Name="Enabled" Type="bool" Value="True"/>
 															<Property Name="Min" Type="Real64" Value="-2"/>
 														</PropertyList>
 													</Modifier>
@@ -213,7 +208,6 @@
 												<ModifierInfo>
 													<Modifier Name="" ID="{AA4A1685-6B78-4EA2-B1B5-1B98A474179C}">
 														<PropertyList>
-															<Property Name="Enabled" Type="bool" Value="True"/>
 															<Property Name="Max" Type="Real64" Value="2"/>
 															<Property Name="Min" Type="Real64" Value="-2"/>
 														</PropertyList>
@@ -270,6 +264,10 @@
 																					<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{35A5B384-227F-44D3-97CF-350C22781758}" ShortID="913964377">
 																						<PropertyList>
 																							<Property Name="EnvelopeAttackTime" Type="Real64" Value="0.01"/>
+																							<Property Name="EnvelopeAutoRelease" Type="bool" Value="True"/>
+																							<Property Name="EnvelopeReleaseTime" Type="Real64" Value="0.326"/>
+																							<Property Name="EnvelopeSustainTime" Type="Real64" Value="1"/>
+																							<Property Name="ModulatorScope" Type="int32" Value="0"/>
 																						</PropertyList>
 																					</ModulatorEnvelope>
 																				</Custom>
