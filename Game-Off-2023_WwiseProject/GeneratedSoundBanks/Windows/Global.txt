@@ -1,8 +1,14 @@
 Event	ID	Name			Wwise Object Path	Notes
+	59945695	Play_Debug_Blip			\Default Work Unit\Debug\Play_Debug_Blip	
 	670160927	Play_Debug_01			\Default Work Unit\Debug\Play_Debug_01	
+	905364984	Stop_PC_Footstep			\Default Work Unit\PlayerCharacter\Stop_PC_Footstep	
 	1931726204	Play_2D_Music			\Default Work Unit\2D_Music\Play_2D_Music	
 	2367458202	Stop_2D_Music			\Default Work Unit\2D_Music\Stop_2D_Music	
+	3197058085	Stop_Debug_Blip			\Default Work Unit\Debug\Stop_Debug_Blip	
 	3377468577	Stop_Debug_01			\Default Work Unit\Debug\Stop_Debug_01	
+	3490275236	Stop_Ext_Amb_Forest			\Default Work Unit\Environment\Stop_Ext_Amb_Forest	
+	3984962914	Play_Ext_Amb_Forest			\Default Work Unit\Environment\Play_Ext_Amb_Forest	
+	4047136094	Play_PC_Footstep			\Default Work Unit\PlayerCharacter\Play_PC_Footstep	
 
 State Group	ID	Name			Wwise Object Path	Notes
 	1939884427	Music_2D			\Default Work Unit\Music_2D	
@@ -16,17 +22,52 @@ State	ID	Name	State Group			Notes
 
 Modulator Envelope	ID	Name			Wwise Object Path	Notes
 	227085724	Modulator Envelope (Custom)				
+	913964377	Modulator Envelope (Custom)				
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	131694268	Synth One	Wwise Synth One		\Actor-Mixer Hierarchy\Default Work Unit\Debug\600\Synth One	
+	824633922	Synth One	Wwise Synth One		\Actor-Mixer Hierarchy\Default Work Unit\Debug\Debug_ScatterEmit_test\ENV_Birds\Debug_ScatterEmit_Blip\Synth One	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	63122866	Combat_2_Intro	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Combat_2_Intro_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Combat_02\Combat_2_Intro\Combat_2_Intro		192532
-	70721578	Combat_1_Loop	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Combat_1_Loop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Combat_01\Combat_1_Loop\Combat_1_Loop		9598328
-	70877277	Queen_Ant_Intro	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Queen_Ant_Intro_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\QueenBoss\Queen_Ant_Intro\Queen_Ant_Intro		599188
-	403518514	Queen_Ant_Loop	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Queen_Ant_Loop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\QueenBoss\Queen_Ant_Loop\Queen_Ant_Loop		20968372
-	428078047	Combat_2_Loop	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Combat_2_Loop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Combat_02\Combat_2_Loop\Combat_2_Loop		13470628
-	536945712	Cute_Loop_Only	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Cute_Loop_Only_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Exploration\Cute_Loop_Only\Cute_Loop_Only		15680080
-	772291233	Combat_1_Intro	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Combat_1_Intro_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Combat_01\Combat_1_Intro\Combat_1_Intro		259508
-	854485494	Eerie_Loop_Only	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Eerie_Loop_Only_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Exploration\Eerie_Loop_Only\Eerie_Loop_Only		14222348
+	6632803	chr_player_fs_gen_06	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_gen_06_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Generic\chr_player_fs_gen_06		2876
+	63122866	Combat_2_Intro	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Combat_2_Intro_0762CC47.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Combat_02\Combat_2_Intro\Combat_2_Intro		22375
+	70721578	Combat_1_Loop	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Combat_1_Loop_0762CC47.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Combat_01\Combat_1_Loop\Combat_1_Loop		1388563
+	70877277	Queen_Ant_Intro	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Queen_Ant_Intro_0762CC47.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\QueenBoss\Queen_Ant_Intro\Queen_Ant_Intro		68405
+	72770659	chr_player_fs_grass_02	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_grass_02_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Material\chr_player_fs_grass_02		3329
+	108454985	env_forest_emt_bird_04	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bird_04_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Birds\env_forest_emt_bird_04		38711
+	133702407	env_forest_emt_bird_01	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bird_01_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Birds\env_forest_emt_bird_01		43825
+	166591232	chr_player_fs_gen_01	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_gen_01_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Generic\chr_player_fs_gen_01		3102
+	184594173	chr_player_fs_grass_04	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_grass_04_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Material\chr_player_fs_grass_04		3361
+	223934751	env_forest_emt_bushrustle_04	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bushrustle_04_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_BushRustles\env_forest_emt_bushrustle_04		22006
+	227546467	env_forest_emt_bushrustle_03	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bushrustle_03_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_BushRustles\env_forest_emt_bushrustle_03		24486
+	321842697	env_forest_emt_bird_05	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bird_05_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Birds\env_forest_emt_bird_05		25734
+	362596118	env_forest_emt_crickets_04	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_crickets_04_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Crickets\env_forest_emt_crickets_04		35402
+	374395614	chr_player_fs_grass_03	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_grass_03_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Material\chr_player_fs_grass_03		3841
+	403518514	Queen_Ant_Loop	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Queen_Ant_Loop_0762CC47.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\QueenBoss\Queen_Ant_Loop\Queen_Ant_Loop		2784033
+	411333683	env_forest_emt_crickets_02	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_crickets_02_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Crickets\env_forest_emt_crickets_02		28836
+	428078047	Combat_2_Loop	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Combat_2_Loop_0762CC47.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Combat_02\Combat_2_Loop\Combat_2_Loop		1379915
+	440856082	chr_player_fs_grass_06	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_grass_06_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Material\chr_player_fs_grass_06		3293
+	479357957	env_forest_emt_crickets_03	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_crickets_03_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Crickets\env_forest_emt_crickets_03		42899
+	510199167	env_forest_emt_bird_02	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bird_02_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Birds\env_forest_emt_bird_02		38276
+	536945712	Cute_Loop_Only	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Cute_Loop_Only_0762CC47.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Exploration\Cute_Loop_Only\Cute_Loop_Only		1824217
+	579440455	chr_player_fs_gen_05	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_gen_05_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Generic\chr_player_fs_gen_05		3731
+	581914588	chr_player_fs_grass_01	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_grass_01_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Material\chr_player_fs_grass_01		3329
+	597382483	env_desert_emt_bug_os_03	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_desert_emt_bug_os_03_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Buzzes\env_desert_emt_bug_os_03		21744
+	660263742	env_forest_emt_bushrustle_05	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bushrustle_05_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_BushRustles\env_forest_emt_bushrustle_05		24479
+	672392575	chr_player_fs_gen_03	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_gen_03_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Generic\chr_player_fs_gen_03		3446
+	767270325	chr_player_fs_gen_02	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_gen_02_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Generic\chr_player_fs_gen_02		4058
+	768868617	chr_player_fs_gen_04	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_gen_04_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Generic\chr_player_fs_gen_04		3977
+	772291233	Combat_1_Intro	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Combat_1_Intro_0762CC47.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Combat_01\Combat_1_Intro\Combat_1_Intro		39923
+	822888732	env_desert_emt_bug_os_01	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_desert_emt_bug_os_01_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Buzzes\env_desert_emt_bug_os_01		18711
+	854485494	Eerie_Loop_Only	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\2D_Music\Eerie_Loop_Only_0762CC47.wem		\Interactive Music Hierarchy\Default Work Unit\Music_2D\Exploration\Eerie_Loop_Only\Eerie_Loop_Only		1632063
+	884670616	chr_player_fs_grass_05	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Player\chr_player_fs_grass_05_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerCharacter\Footsteps\PC_Footstep\PC_FS_Material\chr_player_fs_grass_05		3000
+	998660641	env_desert_emt_bug_os_04	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_desert_emt_bug_os_04_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Buzzes\env_desert_emt_bug_os_04		16927
+	1009327035	env_forest_emt_bird_03	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bird_03_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Birds\env_forest_emt_bird_03		36818
+	1028835314	env_forest_emt_bushrustle_02	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bushrustle_02_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_BushRustles\env_forest_emt_bushrustle_02		29941
+	1038000871	env_desert_emt_bug_os_02	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_desert_emt_bug_os_02_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Buzzes\env_desert_emt_bug_os_02		28314
+	1045910622	env_forest_emt_bushrustle_01	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_bushrustle_01_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_BushRustles\env_forest_emt_bushrustle_01		31541
+	1046013144	env_forest_emt_crickets_01	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\env_forest_emt_crickets_01_D8C07C79.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment_3D\ENV_3D_Forest\ENV_Crickets\env_forest_emt_crickets_01		32627
+
+Streamed Audio	ID	Name	Audio source file	Generated audio file	Wwise Object Path	Notes
+	918184820	amb_ext_forest_01	A:\Game Jam\Game-Off-2023\Game-Off-2023_WwiseProject\.cache\Windows\SFX\Environment\amb_ext_forest_01_0762CC47.wem	918184820.wem	\Actor-Mixer Hierarchy\Default Work Unit\Environment_2D\ENV_2D_Forest\amb_ext_forest_01	
 

@@ -30,6 +30,31 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Play_Debug_Blip" ID="{FDA2D49A-4962-4307-8253-2544A54EB3E1}">
+							<ChildrenList>
+								<Action Name="" ID="{3FF28287-25A5-4F3F-A985-FC0E9CF655B8}" ShortID="450656911">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Debug_ScatterEmit_test" ID="{D572975F-E779-412C-AB69-59231B85CB48}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Debug_Blip" ID="{71D0DE18-526D-4B81-AB4A-053BE5F71197}">
+							<ChildrenList>
+								<Action Name="" ID="{0AFE2D34-44BD-459E-85DA-89BE461021F6}" ShortID="24000355">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Debug_ScatterEmit_Blip" ID="{AC9C7F1D-E5AF-4FCE-B3F1-32A1332006A2}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="2D_Music" ID="{883F85DD-2F27-4FBA-8ECA-4364953EAC31}" ShortID="293770586">
@@ -54,6 +79,58 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Music_2D" ID="{8CB8D1D7-FD11-4631-A6FC-9E7CB98AEEB9}" WorkUnitID="{D581061C-CFB2-4FE5-AE11-541C56AC78F3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Environment" ID="{F8A1949F-16B2-41C3-A82B-890104FC51E8}" ShortID="339675003">
+					<ChildrenList>
+						<Event Name="Play_Ext_Amb_Forest" ID="{FDD2F9DB-FE7D-4EDA-AC4C-D23C1C30D4EB}">
+							<ChildrenList>
+								<Action Name="" ID="{68BADB9F-AD16-4F9D-B974-8A488C38D153}" ShortID="607125609">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ENV_2D_Forest" ID="{39613371-984B-40E5-8986-B097DF78212C}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{945F9754-023D-449F-9EB3-640FF87562ED}" ShortID="681546107">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ENV_3D_Forest" ID="{C95AECCE-4C9E-4CD8-A8E0-A5C3DF12FF36}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Ext_Amb_Forest" ID="{F0D5AA03-C479-4394-BF2E-F1E74056F0E7}"/>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="PlayerCharacter" ID="{855F4339-A85D-476A-88DF-C5A46047C2C6}" ShortID="617398699">
+					<ChildrenList>
+						<Event Name="Play_PC_Footstep" ID="{F14348DA-6110-472B-A9C1-AF38A2887D94}">
+							<ChildrenList>
+								<Action Name="" ID="{99559B17-ADF0-454B-91FE-3D2C4A1C3120}" ShortID="728270197">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PC_Footstep" ID="{E80A046D-1E9B-413A-A527-B685B25E6FFF}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_PC_Footstep" ID="{611DE78B-627D-4F83-892B-4A3AFAE87FFC}">
+							<ChildrenList>
+								<Action Name="" ID="{017A7326-3511-4A38-AFFC-1411A825B9BC}" ShortID="528303510">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PC_Footstep" ID="{E80A046D-1E9B-413A-A527-B685B25E6FFF}" WorkUnitID="{99E3F95F-BD00-4E7A-ABDE-2768C3A3757B}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
