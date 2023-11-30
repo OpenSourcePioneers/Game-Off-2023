@@ -14,13 +14,14 @@ public class CloseToTarget : ChaseSOBase
     public override void DoEnterState()
     {
         base.DoEnterState();
-
-        enemy.PushPathRequest(GetRandomPosNearPlayer());
+        sent = true;
+        enemy.CallAfterTime(0f, SearchForTarget);
     }
     public override void DoFrameUpdate()
     {
         base.DoFrameUpdate();
-        DoTransitionCheck();
+        if(!sent)
+            DoTransitionCheck();
         enemy.CheckForWayPoints();
         if((player.transform.position - target).magnitude > 2 * enemy.chaseRad && !sent)
         {

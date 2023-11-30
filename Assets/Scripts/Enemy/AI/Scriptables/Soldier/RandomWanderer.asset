@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RandomWanderer
   m_EditorClassIdentifier: 
   viewRad: 120
-  wanderRange: 10
-  minWait: 10
-  maxWait: 14
+  wanderRange: 20
+  minWait: 2
+  maxWait: 2

@@ -8,16 +8,20 @@ public class Melee : AttackSOBase
     [SerializeField] private float attackRange;
     [SerializeField] private float damage;
     [SerializeField] private float biteDash;
+    [SerializeField] private int maxHits = 1;
+
     Vector3 target;
-    float refTime;
     bool damaged;
+    float refTime;
+    int curHits;
 
     public override void DoEnterState()
     {
         base.DoEnterState();
         canAttack = false;
         refTime = 0f;
-        target = player.transform.position;
+        curHits = 0;
+        target = player.position;
         enemy.PushPathRequest(target);
         head.AssignBehaviour(this);
         enemy.DebugCircle(attackRange, Color.green);
@@ -25,30 +29,34 @@ public class Melee : AttackSOBase
     public override void DoFrameUpdate()
     {
         base.DoFrameUpdate();
-        if(Timeout())
-            DoTransitionCheck();
+        if(Timeout() || curHits >= maxHits)
+        {
+            enemy.CallAfterTime(0.5f, WaitForTransition);
+            return;
+        }
+        
         if(canAttack)
         {
             if(enemy.AimAtPlayer(0.1f, ref refTime))
             {
                 enemy.ResetPath();
-                enemyRb.AddForce((transform.forward + transform.up).normalized * biteDash * 
+                enemyRb.AddForce(transform.forward.normalized * biteDash * 
                     Universe.forceMult * Time.deltaTime, ForceMode.Impulse);
-                DoTransitionCheck();
+                canAttack = false;
+                curHits++;
             }
-
         }
         else if(enemy.disToPlayer < attackRange)
         {
             canAttack = true;
         }
-        else if((player.transform.position - target).sqrMagnitude > attackRange * attackRange)
+        else if((player.position - target).magnitude > attackRange)
         {
-            target = player.transform.position;
+            target = player.position;
             enemy.PushPathRequest(target);
         }else
         {
-            enemy.RotateToTarget(player.transform.position);
+            enemy.RotateToTarget(player.position);
             enemy.lockedAtTarget = true;
             enemy.CheckForWayPoints();
         }
@@ -70,15 +78,20 @@ public class Melee : AttackSOBase
         enemy.machine.ChangeState(enemy.combat);
     }
 
-    public override void DoCollisionCheck(Collider collider)
+    public override void DoCollisionCheck(Collider thisCollider, Collider otherCollider)
     {
-        base.DoCollisionCheck(collider);
+        base.DoCollisionCheck(thisCollider, otherCollider);
         //Attack animations here
         IDamageable iDamageable;
-        if(collider.TryGetComponent<IDamageable>(out iDamageable))
+        if(otherCollider.TryGetComponent<IDamageable>(out iDamageable))
         {
-            iDamageable.Damage(damage, collider.ClosestPoint(transform.position));
+            iDamageable.Damage(damage, otherCollider.ClosestPoint(transform.position));
             damaged = true;
         }
+    }
+
+    private void WaitForTransition(bool success)
+    {
+        DoTransitionCheck();
     }
 }

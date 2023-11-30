@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected Player player;
     [SerializeField] public LayerMask playerMask;
     [SerializeField] private LayerMask walkable;
-    [SerializeField] protected TwoD_Grid grid;
+    [SerializeField] public TwoD_Grid grid;
     [SerializeField] private TextMeshProUGUI stateText;
     [SerializeField] public float speed;
     [SerializeField] public float chaseRad;
@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour, IDamageable
     #region IDamagable
     [field: SerializeField] public float maxHealth {get; set;} = 10f;
     public float curHealth {get; set;}
-    public void Damage(float amount, Vector3 target)
+    public void Damage(float amount, Vector3 target, bool customConcussion = false)
     {
         //ReduceHealth
         curHealth -= amount;
@@ -70,7 +70,8 @@ public class Enemy : MonoBehaviour, IDamageable
         Vector3 dir = (target - transform.position).normalized;
         enemyRb.AddForce(dir * (amount + Universe.knockback) * Time.deltaTime, ForceMode.Impulse);
         //Apply concussion based on amount of damage
-        Concussion(0.1f + amount/15);
+        if(!customConcussion)
+            Concussion(0.1f + amount/15);
         //Destroy if no Health
         if(curHealth < 0)
             Destroy(this.gameObject);
@@ -163,14 +164,6 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         Vector3 dVec = target - transform.position;
         Ray ray = new Ray(transform.position, dVec.normalized);
-        if(Physics.Raycast(ray, dVec.magnitude, grid.unwalkableMask))
-        {
-            gettingPath = true;
-            Vector3[] v = new Vector3[1];
-            v[0] = target;
-            CheckPath(v, true);
-            return;
-        }
         gettingPath = true;
         PathManager.RequestPath(transform.position, target, CheckPath);
     }
@@ -185,18 +178,11 @@ public class Enemy : MonoBehaviour, IDamageable
         transform.forward = Vector3.Slerp(transform.forward, target, rotSpeed * Time.deltaTime);
     }
 
-    public bool AimAtPlayer(float time, ref float curTime, bool direct = false)
+    public bool AimAtPlayer(float time,ref float curTime, bool direct = false, float size = 0.1f)
     {
-        Ray ray = new Ray(transform.position, transform.forward.normalized);
-        if(!Physics.SphereCast(ray, 0.1f, chaseRad * 2, playerMask))
-        {
-            //Rotate to look at player
-            RotateToTarget(player.transform.position, direct);
-
-            lockedAtTarget = true;
-            curTime = 0f;
-        }
-        else
+        Ray ray = new Ray(new Vector3(transform.position.x, player.transform.position.y, 
+            transform.position.z), transform.forward.normalized);
+        if(Physics.SphereCast(ray, size, chaseRad * 2, playerMask))
         {
             curTime += Time.deltaTime;
             if(curTime > time)
@@ -205,13 +191,21 @@ public class Enemy : MonoBehaviour, IDamageable
                 return true;
             }
         }
+        else
+        {
+            //Rotate to look at player
+            RotateToTarget(player.transform.position, direct);
+
+            lockedAtTarget = true;
+            curTime = 0f;
+        }
         return false;
     }
 
     public bool GroundCheck()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
-        if(Physics.Raycast(ray, size + 0.1f, walkable))
+        if(Physics.Raycast(ray, size + 0.2f, walkable))
             return true;
         return false;
     }
@@ -282,7 +276,8 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     protected void AssignComponentsForBosses()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        if(player == null)
+            player = GameObject.Find("Player").GetComponent<Player>();
         foreach (AttackSOBase attack in attackSOBase)
         {
             instAttackBase.Add(Instantiate(attack));
@@ -314,7 +309,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if(canTransition)
         {
-            stateText.text = new string($"State: {machine.curState.GetType()}");
+            if(stateText != null)
+                stateText.text = new string($"State: {machine.curState.GetType()}");
             disToPlayer = (player.transform.position - transform.position).magnitude;
             machine.curState.FrameUpdate();
         }
@@ -340,7 +336,7 @@ public class Enemy : MonoBehaviour, IDamageable
             return;
         for(int i = pathInd; i < path.Length; i++)
         {
-            Gizmos.DrawCube(path[i], Vector3.one * grid.nodeRadius);
+            Gizmos.DrawCube(path[i], Vector3.one * 2 * grid.nodeRadius);
             if(i+1 < path.Length)
                 Gizmos.DrawLine(path[i], path[i+1]);
         }

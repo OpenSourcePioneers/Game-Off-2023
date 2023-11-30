@@ -56,22 +56,22 @@ public class HeadButt : AttackSOBase
         }
     }
 
-    public override void DoCollisionCheck(Collider collider)
+    public override void DoCollisionCheck(Collider thisCollider, Collider otherCollider)
     {
-        base.DoCollisionCheck(collider);
+        base.DoCollisionCheck(thisCollider, otherCollider);
 
         IDamageable iDamageable;
-        if(canAttack && collider.TryGetComponent<IDamageable>(out iDamageable))
+        if(canAttack && otherCollider.TryGetComponent<IDamageable>(out iDamageable))
         {
             foreach (Collider c in damagedCollider)
             {
                 return;
             }
-            damagedCollider.Add(collider);
-            iDamageable.Damage(damage, collider.ClosestPoint(transform.position));
+            damagedCollider.Add(otherCollider);
+            iDamageable.Damage(damage, otherCollider.ClosestPoint(transform.position), true);
             iDamageable.Concussion(concussionAmount);
         }
-        else if(canAttack && collider.gameObject.layer == enemy.obstacle)
+        else if(canAttack && otherCollider.gameObject.layer == enemy.obstacle)
             enemy.Concussion(concussionWhenHitWall);
     }
 

@@ -82,19 +82,17 @@ public class NoseDive : AttackSOBase
         }
     }
 
-    public override void DoCollisionCheck(Collider collider)
+    public override void DoCollisionCheck(Collider thisCollider, Collider otherCollider)
     {
-        base.DoCollisionCheck(collider);
-
+        base.DoCollisionCheck(thisCollider, otherCollider);
         IDamageable iDamageable;
-        if(canAttack && collider.TryGetComponent<IDamageable>(out iDamageable))
+        if(canAttack && otherCollider.TryGetComponent<IDamageable>(out iDamageable))
         {
             foreach (Collider c in damagedCollider)
-            {
                 return;
-            }
-            damagedCollider.Add(collider);
-            iDamageable.Damage(damage, collider.ClosestPoint(transform.position));
+            
+            damagedCollider.Add(otherCollider);
+            iDamageable.Damage(damage, otherCollider.ClosestPoint(transform.position));
             iDamageable.Concussion(concussionAmount);
         }
     }

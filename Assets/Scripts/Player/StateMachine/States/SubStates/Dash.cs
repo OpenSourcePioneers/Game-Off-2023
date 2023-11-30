@@ -34,6 +34,7 @@ public class Dash : PlayerState
     {
         base.ExitState();
         leaveTime = Time.realtimeSinceStartupAsDouble;
+        player.damaged.Clear();
     }
 
     public override void TransitionCheck()

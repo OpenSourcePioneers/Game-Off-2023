@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemyAttack : EnemyState
 {
+
     AttackSOBase thisAttack;
+    bool randomize = true;
+
     public EnemyAttack(Enemy _enemy, EnemyMachine _machine) : base(_enemy, _machine)
     {
 
@@ -13,9 +16,13 @@ public class EnemyAttack : EnemyState
     public override void EnterState()
     {
         base.EnterState();
-        enemy.attackInd = Random.Range(0, enemy.instAttackBase.Count);
-        thisAttack = enemy.instAttackBase[enemy.attackInd];
+        if(randomize)
+        {
+            enemy.attackInd = Random.Range(0, enemy.instAttackBase.Count);
+            thisAttack = enemy.instAttackBase[enemy.attackInd];
+        }
         thisAttack.DoEnterState();
+        randomize = true;
     }
     public override void ExitState()
     {
@@ -36,5 +43,11 @@ public class EnemyAttack : EnemyState
     {
         base.TransitionCheck();
         thisAttack.DoTransitionCheck();
+    }
+
+    public void SetInst(int ind)
+    {
+        randomize = false;
+        enemy.attackInd = ind;
     }
 }

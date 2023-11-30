@@ -10,6 +10,7 @@ public class Bodyslam : AttackSOBase
     [SerializeField] private float damageRadius;
     [SerializeField] private float concussionAmount;
 
+    Collider enemyCollider;
     float time;
     float refTime;
     float force;
@@ -18,9 +19,19 @@ public class Bodyslam : AttackSOBase
     {
         base.Initialize(_enemy, _gameObject);
         enemy.DebugCircle(damageRadius, Color.black);
+        enemyCollider = enemy.GetComponent<Collider>();
     }
     public override void DoEnterState()
     {
+        if(enemy.disToPlayer > damageRadius * 2)
+        {
+            int ind = enemy.attackInd;
+            if(ind == enemy.instAttackBase.Count && ind != 0)
+                ind--;
+            else
+                ind++;
+            enemy.attack.SetInst(ind);
+        }
         base.DoEnterState();
         refTime = time = 0f;
     }
@@ -30,18 +41,17 @@ public class Bodyslam : AttackSOBase
 
         time += Time.deltaTime;
         force = forceCurve.Evaluate(time);
-        if(time > 5f && enemy.GroundCheck())
+        if(time > 0.5f && enemy.GroundCheck())
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
             foreach(Collider collider in colliders)
-                DoCollisionCheck(collider);
+                DoCollisionCheck(enemyCollider, collider);
             DoTransitionCheck();
         }
     }
     public override void DoFixedFrameUpdate()
     {
-        if(time > 0.5f)
-            BodyslamOnGround();
+        BodyslamOnGround();
     }
     public override void DoExitState()
     {
@@ -53,15 +63,15 @@ public class Bodyslam : AttackSOBase
         enemy.machine.ChangeState(enemy.combat);
     }
 
-    public override void DoCollisionCheck(Collider collider)
+   public override void DoCollisionCheck(Collider thisCollider, Collider otherCollider)
     {
-        base.DoCollisionCheck(collider);
-        if(collider.transform == transform)
+        base.DoCollisionCheck(thisCollider, otherCollider);
+        if(otherCollider.transform == transform)
             return;
         IDamageable iDamageable;
-        if(collider.TryGetComponent<IDamageable>(out iDamageable))
+        if(otherCollider.TryGetComponent<IDamageable>(out iDamageable))
         {
-            iDamageable.Damage(damage, collider.ClosestPoint(transform.position));
+            iDamageable.Damage(damage, otherCollider.ClosestPoint(transform.position));
             iDamageable.Concussion(concussionAmount);
         }
     }

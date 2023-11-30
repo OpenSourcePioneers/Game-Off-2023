@@ -4,21 +4,28 @@ using UnityEngine;
 
 public class Queen : Enemy
 {
+    [SerializeField] private CollisionCheck head;
+    [SerializeField] private Transform ppHole;
+    [SerializeField] public TwoD_Grid gridForMinions;
     [Header("Phase-2")]
     [SerializeField] private List<AttackSOBase> attackSOBase2;
     [SerializeField] private CombatSOBase combatSOBase2;
+    [SerializeField] private float speed2;
     
-
     bool in2ndPhase = false;
 
     void Awake()
     {
         AssignComponentsForBosses();
-
     }
     void Start()
     {
         InitializeStatesForBosses();
+        foreach (AttackSOBase attack in instAttackBase)
+        {
+            attack.shootTrans = ppHole;
+            attack.head = head;
+        }
     }
 
     void Update()
@@ -44,6 +51,9 @@ public class Queen : Enemy
             instAttack.Initialize(this, gameObject);
         }
         instCombatBase.Initialize(this, gameObject, true);
+        speed = speed2;
+
+
         in2ndPhase = true;
     }
 }

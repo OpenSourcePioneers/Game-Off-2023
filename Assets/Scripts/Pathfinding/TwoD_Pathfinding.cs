@@ -17,6 +17,8 @@ public class TwoD_Pathfinding : MonoBehaviour
 
     public void StartPathfinding(Vector3 start, Vector3 end)
     {
+		//start = new Vector3(start.x, transform.position.y, start.z);
+		//end = new Vector3(end.x, transform.position.y, end.z);
 		StartCoroutine(FindPath(start, end));
     }
 
@@ -98,7 +100,11 @@ public class TwoD_Pathfinding : MonoBehaviour
 			path.Add(currentNode);
 			currentNode = currentNode.parent;
 		}
-		List<Vector3> wayPoints = SimplifyPath(path);
+		List<Vector3> wayPoints = SimplifyPath(path);//new List<Vector3>();
+		/*foreach (TwoD_Node node in path)
+		{
+			wayPoints.Add(node.nodePosition);
+		}*/
 		wayPoints.Reverse();
 		return wayPoints.ToArray();
 	}

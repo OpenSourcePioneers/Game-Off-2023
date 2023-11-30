@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Soldier : Enemy, IIsAFlyer
+public class Soldier : Enemy//, IFlyer
 {
     [SerializeField] private CollisionCheck head;
     [SerializeField] private Transform ppHole;
@@ -61,17 +61,13 @@ public class Soldier : Enemy, IIsAFlyer
 
     }
 
-    public void DoFlight(float height, float randomness = 1f)
+    public void DoFlight(float height)
     {
         if(flightStarted)
         {
-            if(transform.position.y < Random.Range(height, height + randomness))
+            if(transform.position.y < height)
             {
                 enemyRb.MovePosition(transform.position + target);
-            }
-            else
-            {
-                enemyRb.MovePosition(transform.position - target);
             }
         }
     }

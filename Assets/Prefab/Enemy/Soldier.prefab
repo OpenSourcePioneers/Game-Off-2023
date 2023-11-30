@@ -185,6 +185,9 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 8
+  walkable:
+    serializedVersion: 2
+    m_Bits: 64
   grid: {fileID: 0}
   stateText: {fileID: 0}
   speed: 5
@@ -203,10 +206,11 @@ MonoBehaviour:
   WalkState: 1
   attackSOBase:
   - {fileID: 11400000, guid: a22333c75187e45d48ca2c60fd76999d, type: 2}
-  chaseSOBase: {fileID: 11400000, guid: 6c88e4eea34f94d43bf513d3e5156237, type: 2}
+  - {fileID: 11400000, guid: 6732e3cc062514b67aad9123484ab3a0, type: 2}
   combatSOBase: {fileID: 11400000, guid: a8faae5c7a93f49d1bd98d9da3875307, type: 2}
+  chaseSOBase: {fileID: 11400000, guid: 6c88e4eea34f94d43bf513d3e5156237, type: 2}
   wanderSOBase: {fileID: 11400000, guid: c8559e613e52b461190a7b3b1d74d70a, type: 2}
-  <maxHealth>k__BackingField: 20
+  <maxHealth>k__BackingField: 50
   head: {fileID: 5962567994194327843}
   ppHole: {fileID: 6467987523358940056}
   moveFlighCurve:
@@ -417,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a418b64a998964a10bcd245c8a100f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeType: 0
   enemy: {fileID: 0}
 --- !u!1 &8823023847373809823
 GameObject:

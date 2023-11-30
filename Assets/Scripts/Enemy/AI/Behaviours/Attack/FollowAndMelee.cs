@@ -86,21 +86,21 @@ public class FollowAndMelee : AttackSOBase
         enemy.machine.ChangeState(enemy.combat);
     }
 
-    public override void DoCollisionCheck(Collider collider)
+    public override void DoCollisionCheck(Collider thisCollider, Collider otherCollider)
     {
-        base.DoCollisionCheck(collider);
+        base.DoCollisionCheck(thisCollider, otherCollider);
         //Attack animations here
         IDamageable iDamageable;
-        if(collider.TryGetComponent<IDamageable>(out iDamageable))
+        if(otherCollider.TryGetComponent<IDamageable>(out iDamageable))
         {
-            iDamageable.Damage(damage, collider.ClosestPoint(transform.position));
+            iDamageable.Damage(damage, otherCollider.ClosestPoint(transform.position));
             timesHited++;
         }
     }
 
     private void FollowTarget()
     {
-        soldier.DoFlight(maxHeight, 0);
+        soldier.DoFlight(maxHeight);
         enemy.Move(true);
     }
 }

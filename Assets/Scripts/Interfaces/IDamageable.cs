@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void Damage(float amount, Vector3 hitLoc);
+    void Damage(float amount, Vector3 hitLoc, bool customConcussion = false);
     void Concussion(float amount);
     
     float maxHealth{get; set;}

@@ -4,21 +4,25 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShootAtTarget", menuName = "Behaviours/Attack/ShootAtTarget", 
     order = 0)]
-public class ShootAtTarget : AttackSOBase
+public class ShootAtTarget : AttackSOBase, IShooter
 {
     [SerializeField] private CollisionCheck projectile;
     [SerializeField] private float damage;
     [SerializeField] private float projHeight;
     [SerializeField] private float aimTime;
+    [field: SerializeField] public int maxShots{get; set;}
+    [field: SerializeField] public float delay{get; set;}
 
     Rigidbody projRb;
     float refTime;
-    CollisionCheck collisionCheck;
+    public float timeSinceLastShot{get; set;}
+    public int shotsFired{get; set;}
 
     public override void DoEnterState()
     {
         base.DoEnterState();
-        refTime = 0f;
+        timeSinceLastShot = refTime = 0f;
+        shotsFired = 0;
     }
     public override void DoFrameUpdate()
     {
@@ -27,19 +31,25 @@ public class ShootAtTarget : AttackSOBase
         {
             DoTransitionCheck();
         }
-
+        timeSinceLastShot += Time.deltaTime;
         if(!canAttack)
         {
             canAttack = enemy.AimAtPlayer(aimTime, ref refTime);
-        }else
+        }
+        else
         {
-            ShootProjectile();
-            DoTransitionCheck();
+            if(timeSinceLastShot > delay)
+            {
+                canAttack = false;
+                ShootProjectile();
+            }
+            if(shotsFired >= maxShots)
+                DoTransitionCheck();
         }
     }
     public override void DoFixedFrameUpdate()
     {
-
+        base.DoFixedFrameUpdate();
     }
     public override void DoExitState()
     {
@@ -52,34 +62,37 @@ public class ShootAtTarget : AttackSOBase
         enemy.machine.ChangeState(enemy.combat);
     }
 
-    public override void DoCollisionCheck(Collider collider)
+    public override void DoCollisionCheck(Collider thisCollider, Collider otherCollider)
     {
-        base.DoCollisionCheck(collider);
+        base.DoCollisionCheck(thisCollider, otherCollider);
 
         IDamageable iDamageable;
-        if(collider.TryGetComponent<IDamageable>(out iDamageable))
+        if(otherCollider.TryGetComponent<IDamageable>(out iDamageable))
         {
-            iDamageable.Damage(damage, collider.ClosestPoint(transform.position));
+            iDamageable.Damage(damage, otherCollider.ClosestPoint(transform.position));
         }
 
-        Destroy(collisionCheck.gameObject);
+        Destroy(thisCollider);
     }
 
     private void ShootProjectile()
     {
         projRb = Instantiate(projectile, shootTrans.position, transform.rotation).GetComponent<Rigidbody>();
         projRb.velocity = Predict();
+        CollisionCheck collisionCheck;
         collisionCheck = projRb.gameObject.GetComponent<CollisionCheck>();
         collisionCheck.enemy = enemy;
         collisionCheck.AssignBehaviour(this);
         Destroy(collisionCheck.gameObject, 5f);
+        shotsFired++;
+        timeSinceLastShot = 0f;
     }
 
     private Vector3 Predict()
     {
         float g = -Physics.gravity.magnitude;
         Vector3 s = player.transform.position - shootTrans.position;
-        float h = s.y + projHeight;
+        float h = s.y + Random.Range(projHeight - 2f, projHeight + 2f);
         if(h < projHeight)
             h = projHeight;
         Vector3 disInXZ = new Vector3(s.x, 0f, s.z);

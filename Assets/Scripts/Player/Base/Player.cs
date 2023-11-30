@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
 {
     #region Components
     [SerializeField] private Rigidbody playerRb;
-    [SerializeField] private TextMeshProUGUI stateText;
+    [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private Transform mainCam;
     [SerializeField] private Transform feet;
     [SerializeField] private Transform orientation;
@@ -24,12 +24,15 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     [SerializeField] public float rbDrag;
     [SerializeField] private float rotSpeed;
     [SerializeField] public float dashDelay;
+    [SerializeField] private float damage = 5f;
     [SerializeField] private LayerMask walkable;
     [HideInInspector] public Vector3 inp;
+    [HideInInspector] public List<IDamageable> damaged = new List<IDamageable>();
     #endregion
 
     #region Private variables
     bool canTransition = true;
+    float timeSinceLastAttack = 0f;
     #endregion
 
     #region StateMachine variables
@@ -47,7 +50,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     [field: SerializeField] public float maxHealth {get; set;} = 10f;
     public float curHealth {get; set;}
 
-    public void Damage(float amount, Vector3 target)
+    public void Damage(float amount, Vector3 target, bool customConcussion = false)
     {
         //ReduceHealth
         curHealth -= amount;
@@ -55,7 +58,8 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         Vector3 dir = (target - transform.position).normalized;
         playerRb.AddForce(dir * (amount + Universe.knockback) * Time.deltaTime, ForceMode.Impulse);
         //Apply concussion based on amount of damage
-        Concussion(0.1f + amount/15);
+        if(!customConcussion)
+            Concussion(0.1f + amount/15);
         //Destroy if no Health
         if(curHealth < 0)
             Destroy(this.gameObject);
@@ -99,8 +103,10 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         {
             ConfigCam();
             machine.curState.FrameUpdate();
-            //stateText.text = new string($"State: {machine.curState.GetType()}");
+            if(healthText != null)
+                healthText.text = new string($"Health: {curHealth}");
         }
+        timeSinceLastAttack += Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -143,7 +149,30 @@ public class Player : MonoBehaviour, IDamageable, IInputable
             return false;
     }
 
-    
+    void OnCollisionStay(Collision other)
+    {
+        IDamageable iDamageable;
+        if(other.gameObject.TryGetComponent<IDamageable>(out iDamageable))
+        {
+            bool lMouse = false;
+            if(canTransition)
+                lMouse = IsLMouseClick();
+            if(machine.curState == dash || lMouse)
+            {
+                foreach (IDamageable iDam in damaged)
+                {
+                    if(iDam == iDamageable)
+                        return;
+                }
+                iDamageable.Damage(damage, other.collider.ClosestPoint(transform.position), true);
+                iDamageable.Concussion(2f);
+                timeSinceLastAttack = 0f;
+                if(!lMouse)
+                    damaged.Add(iDamageable);
+            }
+        }
+    }
+
     #region Input interface
     public bool IsMoving()
     {
@@ -178,8 +207,11 @@ public class Player : MonoBehaviour, IDamageable, IInputable
 
     public bool IsLMouseClick()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && timeSinceLastAttack > 0.5f)
+        {
+            Debug.Log("Working");
             return true;
+        }    
         else
             return false;
     }

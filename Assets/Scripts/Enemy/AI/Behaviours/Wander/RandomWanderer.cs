@@ -16,7 +16,8 @@ public class RandomWanderer : WanderSOBase
     public override void DoEnterState()
     {
         base.DoEnterState();
-        enemy.PushPathRequest(GetRandomTarget());
+        sent = true;
+        enemy.CallAfterTime(0f, SearchForTarget);
     }
     public override void DoFrameUpdate()
     {

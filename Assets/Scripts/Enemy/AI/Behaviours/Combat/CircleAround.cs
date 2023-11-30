@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CircleAround", menuName = "Behaviours/Combat/CircleAround", 
-    order = 0)]
+[CreateAssetMenu(fileName = "CircleAround", menuName = "Behaviours/Combat/CircleAround", order = 0)]
 public class CircleAround : CombatSOBase
 {
     [SerializeField] private float cirRange;
@@ -37,7 +35,6 @@ public class CircleAround : CombatSOBase
             enemy.RotateToTarget(player.transform.position);
             enemy.lockedAtTarget = true;
         }
-
     }
     public override void DoFixedFrameUpdate()
     {

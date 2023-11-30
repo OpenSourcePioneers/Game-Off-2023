@@ -34,13 +34,13 @@ public class AttackSOBase : ScriptableObject
     public virtual void DoFixedFrameUpdate() {}
     public virtual void DoExitState()
     {
-        canAttack = false; 
+        canAttack = false;
         curTime = 0f;
         enemy.WalkState = true;
         enemy.ResetPath(); 
     }
     public virtual void DoTransitionCheck() {}
-    public virtual void DoCollisionCheck(Collider collider) {}
+    public virtual void DoCollisionCheck(Collider thisCollider, Collider otherCollider) {}
     protected bool Timeout(float maxTime = 10f)
     {
         curTime += Time.deltaTime;
