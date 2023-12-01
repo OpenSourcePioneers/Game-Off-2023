@@ -32,6 +32,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
 
     #region Private variables
     bool canTransition = true;
+    bool stoppedEvent = true;
     float timeSinceLastAttack = 0f;
     #endregion
 
@@ -103,10 +104,19 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         {
             ConfigCam();
             machine.curState.FrameUpdate();
-            if(IsMoving())
+
+            //SFX
+            if(IsMoving() && stoppedEvent)
             {
                 AkSoundEngine.PostEvent("Play_PC_Footstep", this.gameObject);
+                stoppedEvent = false;
             }
+            else if(!IsMoving() && !stoppedEvent)
+            {
+                AkSoundEngine.PostEvent("Stop_PC_Footstep", this.gameObject);
+                stoppedEvent = true;
+            }
+
             //UI elements
             if(healthText != null)
                 healthText.text = new string($"Health: {curHealth}");
