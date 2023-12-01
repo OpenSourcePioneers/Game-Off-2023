@@ -40,7 +40,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1465331116" Type="User" Language="SFX" Hash="{F20118DB-A57D-7A72-AA1D-209CD1BF346D}">
+		<SoundBank Id="1465331116" Type="User" Language="SFX" Hash="{FF1D2A4F-5D73-8A25-9460-2BCF8B3BD52B}">
 			<ShortName>Global</ShortName>
 			<Path>Global.bnk</Path>
 			<Media>
@@ -320,5 +320,5 @@
 			</StateGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{9054267E-D1A4-1865-3255-91EDB92FF614}</FileHash>
+	<FileHash>{DF651EA4-3130-462B-5D8E-4B6E82E6C06F}</FileHash>
 </SoundBanksInfo>
