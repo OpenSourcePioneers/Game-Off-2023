@@ -223,10 +223,7 @@ public class Player : MonoBehaviour, IDamageable, IInputable
     public bool IsLMouseClick()
     {
         if(Input.GetMouseButtonDown(0) && timeSinceLastAttack > 0.5f)
-        {
-            Debug.Log("Working");
-            return true;
-        }    
+            return true;    
         else
             return false;
     }
