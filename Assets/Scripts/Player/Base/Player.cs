@@ -103,6 +103,11 @@ public class Player : MonoBehaviour, IDamageable, IInputable
         {
             ConfigCam();
             machine.curState.FrameUpdate();
+            if(IsMoving())
+            {
+                AkSoundEngine.PostEvent("Play_PC_Footstep", this.gameObject);
+            }
+            //UI elements
             if(healthText != null)
                 healthText.text = new string($"Health: {curHealth}");
         }

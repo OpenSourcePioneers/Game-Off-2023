@@ -10137,7 +10137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122019181}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27491838, y: -0.000000023395872, z: 0.0000000066897274, w: 0.96146756}
+  m_LocalRotation: {x: 0.27491838, y: 0.000000023395863, z: -0.0000000066897248, w: 0.96146756}
   m_LocalPosition: {x: 0, y: 15.1, z: -22.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14918,6 +14918,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730161390}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1751373737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1751373738}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1751373738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751373737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -98.46325, y: -59.317627, z: -67.43021}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1762205271
 GameObject:
   m_ObjectHideFlags: 0
@@ -18647,12 +18678,12 @@ PrefabInstance:
     - target: {fileID: 6746530808293610309, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000023395872
+      value: 0.000000023395863
       objectReference: {fileID: 0}
     - target: {fileID: 6746530808293610309, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000066897274
+      value: -0.0000000066897248
       objectReference: {fileID: 0}
     - target: {fileID: 6995835271378927895, guid: b60e050cf40d94452aa959eea0bee0de,
         type: 3}
@@ -18690,3 +18721,4 @@ SceneRoots:
   - {fileID: 1150701635}
   - {fileID: 671064861}
   - {fileID: 2099112599}
+  - {fileID: 1751373738}
